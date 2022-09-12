@@ -1,9 +1,9 @@
 # Getting Started on VeChain
 
-_This repository provides information and instructions for developers to get started with development in the VeChain-ecosystem._
+This repository provides information and instructions for developers to get started with development in the VeChain-ecosystem.
 
-_Do you want to connect, tap other developers or share your knowledge? Join us on_ [_Discord_](https://discord.gg/dhVCVNbHRT)_._
+Do you want to connect, tap other developers or share your knowledge? Join us on [Discord](https://discord.gg/dhVCVNbHRT).
 
-_This page is currently available at:_ [_https://learn.vechain.energy_](https://learn.vechain.energy/)__
+This page is currently available at: [https://learn.vechain.energy](https://learn.vechain.energy/)
 
-_You can suggest edits on GitLab at:_ [_https://github.com/vechain-energy/learn.vechain.energy_](https://github.com/vechain-energy/learn.vechain.energy)__
+You can suggest edits on GitLab at: [https://github.com/vechain-energy/learn.vechain.energy](https://github.com/vechain-energy/learn.vechain.energy)
