@@ -1,0 +1,62 @@
+# get owned token ids for NFT contract
+
+```python
+"""
+Gets owned token ids of a wallet from a NFT smart contract
+
+
+Requires: thor_requests.py
+https://github.com/laalaguer/thor-requests.py
+
+Known Smart Contracts: https://github.com/nodatall/seevechain/blob/master/shared/knownAddresses.js
+Known ABIs: https://github.com/vechain/b32/tree/master/ABIs
+"""
+from thor_requests.connect import Connect
+from thor_requests.contract import Contract
+import json
+
+
+# Address of the wallet you want to get token ids for
+wallet_address = "0xc84C3F64F7EEfaFB62Dc53F829219B7393464C45"
+
+# Smart Contract address
+nft_address = "0xffcc1c4492c3b49825712e9a8909e4fcebfe6c02"
+
+
+# ABI for Smart Contract
+# Opens a JSON file & converts it to a dictionary to properly load the ABI in thor_requests
+with open("vesea_nft.json", "r") as file:
+    data = json.load(file)
+
+data = {"abi":data}
+nft_contract = Contract(data)
+
+
+# Connect to a VeChain Thor node
+connector = Connect("https://mainnet.veblocks.net")
+
+
+# Call a Smart Contract function
+# walletOfOwner function returns an addresses owned token ids
+def get_wallet_tokens(wallet_address, nft_address):
+    response = connector.call(
+        caller="0x0000000000000000000000000000000000000000",
+        contract=nft_contract,
+        func_name="walletOfOwner",
+        func_params=[wallet_address],
+        to=nft_address,
+    )
+    if response["reverted"] == True:
+        return "reverted"
+    else:
+        return list(response["decoded"]["0"])
+
+
+# Run function and sort token ids
+tokens = get_wallet_tokens(wallet_address, nft_address)
+tokens = sorted(tokens)
+
+print(tokens)
+```
+
+from [@TomFromFacebook](https://discord.com/channels/948215669672001596/948215669672001599/970223562654908466)
