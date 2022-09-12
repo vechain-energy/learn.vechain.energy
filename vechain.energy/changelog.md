@@ -4,6 +4,9 @@ _🏗️ current work in progress_
 
 * :gear: Analytics Performance improvements
 * :gear: System stabilization / reducing technical debt
+
+## Pending: 0.11.0
+
 * :bug: Fix empty Tooltip on low uint256 values
 * :bug: Fix BigNumber decoding for some VET transfers
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team

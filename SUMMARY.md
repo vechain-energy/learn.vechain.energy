@@ -5,7 +5,7 @@
 ## Know How
 
 * [What is VeChain?](know-how/what-is-vechain.md)
-* [What is Fee Delegation?](know-how/what-is-fee-delegation.md)
+* [What is Fee Delegation?](know-how/what-is-fee-delegation/README.md)
   * [How does Fee Delegation work?](know-how/what-is-fee-delegation/how-does-fee-delegation-work.md)
   * [How to implement Fee Delegation?](know-how/what-is-fee-delegation/how-to-implement-fee-delegation.md)
   * [How to deploy with Fee Delegation?](know-how/what-is-fee-delegation/how-to-deploy-with-fee-delegation.md)
@@ -34,12 +34,12 @@
 * [Transaction Dependency](how-to/transaction-dependency.md)
 * [Support Sync-Browser and Sync2(-Lite)](how-to/support-sync-browser-and-sync2-lite.md)
 * [Analytics](how-to/analytics.md)
-* [Node](how-to/node.md)
+* [Node](how-to/node/README.md)
   * [Setup Public Node](how-to/node/setup-public-node.md)
 
 ## coding
 
-* [Example Projects for study](coding/readme.md)
+* [Example Projects for study](coding/coding.md)
 * [by Language](coding/by-language/README.md)
   * [Javascript](coding/by-language/javascript.md)
   * [Python](coding/by-language/python/README.md)

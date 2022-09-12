@@ -32,7 +32,7 @@ If expired, the transaction will:
 1. appear as “stale” transaction
 2. not cost gas
 
-![Expired Transaction](<../.gitbook/assets/image (4).png>)
+![Expired Transaction](<../.gitbook/assets/image (13).png>)
 
 ### **Unfulfilled Dependency**
 

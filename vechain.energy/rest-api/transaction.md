@@ -6,9 +6,9 @@ Every Sponsorship can have multiple API-Keys. API-Keys remove the web3 and walle
 
 API-Keys can be created in the Web-Interface for each Sponsorship. An API-Key-Secret is generated locally and needs to be backed up. The API-Key-Secret is sent with each request.
 
-|                                                                              |                                                                                          |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| <img src="../../.gitbook/assets/image (22).png" alt="" data-size="original"> | <h3><img src="../../.gitbook/assets/image (1) (1).png" alt="" data-size="original"></h3> |
+|                                                                             |                                                                                       |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| <img src="../../.gitbook/assets/image (5).png" alt="" data-size="original"> | <h3><img src="../../.gitbook/assets/image (10).png" alt="" data-size="original"></h3> |
 
 ### Permissions
 
