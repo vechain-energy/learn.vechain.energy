@@ -278,3 +278,9 @@ logout
 
 sudo systemctl restart thor
 ```
+
+
+
+### Links
+
+* [Installscript for Debian by MiRei](https://github.com/mirei83/vechain-deploy)
