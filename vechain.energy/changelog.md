@@ -11,6 +11,7 @@ _🏗️ current work in progress_
 * :bug: Fix BigNumber decoding for some VET transfers
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 * :gear: Minor Text/UI/UX tweaks
+* :gear: Switching to new GraphQL based backend and in the process Improving event & statistics load time
 
 ## 0.10.3
 
