@@ -9,9 +9,12 @@ _🏗️ current work in progress_
 
 * :bug: Fix empty Tooltip on low uint256 values
 * :bug: Fix BigNumber decoding for some VET transfers
+* :bug: Fix pagination issues in whitelist management
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+* :unicorn: Whitelist-Management shows VTHO burn to identify inactive or highly active entries
 * :gear: Minor Text/UI/UX tweaks
 * :gear: Switching to new GraphQL based backend and in the process Improving event & statistics load time
+* :gear: Event Timeframe-Filters no longer support a time selection to be simpler, quicker and more user friend &#x20;
 
 ## 0.10.3
 
