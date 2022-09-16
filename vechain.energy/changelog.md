@@ -14,7 +14,7 @@ _🏗️ current work in progress_
 * :unicorn: Whitelist-Management shows VTHO burn to identify inactive or highly active entries
 * :gear: Minor Text/UI/UX tweaks
 * :gear: Switching to new GraphQL based backend and in the process Improving event & statistics load time
-* :gear: Event Timeframe-Filters no longer support a time selection to be simpler, quicker and more user friend &#x20;
+* :gear: Event Timeframe-Filters no longer support a time selection to be simpler, quicker and more user friendly
 
 ## 0.10.3
 
