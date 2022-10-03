@@ -54,6 +54,7 @@
 
 ## vechain.energy
 
+* [WebHooks](vechain.energy/webhooks.md)
 * [Contract-Verification](vechain.energy/contract-verification.md)
 * [Contract-Rate-Limits](vechain.energy/contract-rate-limits.md)
 * [Signing API](vechain.energy/signing-api.md)

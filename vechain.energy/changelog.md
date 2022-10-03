@@ -7,6 +7,7 @@ _🏗️ current work in progress_
 
 ## Pending: 0.11.0
 
+* :unicorn: New ability to trigger a WebHook on contract events
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 * :unicorn: Whitelist-Management shows VTHO burn to identify inactive or highly active entries
 * :unicorn: Add new "Audit Events" to access history of changes for a Sponsorship

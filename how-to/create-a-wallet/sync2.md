@@ -41,7 +41,7 @@ Identities in Sync2 are linked to a Main- or Test Network. To use the same ident
 
 Identities can be imported or new ones generated
 
-![](<../../.gitbook/assets/image (12).png>) ![](<../../.gitbook/assets/image (19).png>) ![](<../../.gitbook/assets/image (18).png>) ![](<../../.gitbook/assets/image (16).png>) ![](<../../.gitbook/assets/image (22).png>)
+![](<../../.gitbook/assets/image (12).png>) ![](<../../.gitbook/assets/image (19) (1).png>) ![](<../../.gitbook/assets/image (18).png>) ![](<../../.gitbook/assets/image (16).png>) ![](<../../.gitbook/assets/image (22).png>)
 
 ## Switch Identities
 
