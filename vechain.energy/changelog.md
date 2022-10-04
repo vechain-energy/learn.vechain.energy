@@ -2,13 +2,15 @@
 
 _🏗️ current work in progress_
 
-* :gear: Analytics Performance improvements
-* :gear: System stabilization / reducing technical debt
+* :unicorn: WebHook Management
 
-## Pending: 0.11.0
+## Pending: 0.12.0
+
+* :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+
+## 0.11.0
 
 * :unicorn: New ability to trigger a WebHook on contract events
-* :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 * :unicorn: Whitelist-Management shows VTHO burn to identify inactive or highly active entries
 * :unicorn: Add new "Audit Events" to access history of changes for a Sponsorship
 * :gear: Switching to new GraphQL based backend and in the process Improving event & statistics load time
