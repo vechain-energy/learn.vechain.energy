@@ -12,6 +12,8 @@ _🏗️ current work in progress_
 
 * :unicorn: WebHooks can be filtered by comparing single event variables
 * :unicorn: WebHooks can optionally decode bytes to strings and uint to a readable format (for token values)
+* :unicorn: API Calls can be tested during creation
+* :gear: User experience to setup WebHooks improved
 
 ## 0.11.0
 
