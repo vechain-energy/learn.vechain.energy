@@ -4,9 +4,14 @@ _🏗️ current work in progress_
 
 * :unicorn: WebHook Management
 
-## Pending: 0.12.0
+## Pending: 0.13.0
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+
+## 0.12.0
+
+* :unicorn: WebHooks can be filtered by comparing single event variables
+* :unicorn: WebHooks can optionally decode bytes to strings and uint to a readable format (for token values)
 
 ## 0.11.0
 
