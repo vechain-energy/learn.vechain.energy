@@ -105,7 +105,11 @@ In addition to the `identification` also `agreement` is a valid purpose. It can 
 
 To prevent someone from re-using a signed certificate, using a custom payload can ensure the signature is for the right purpose.
 
+### Example
+
 An example project signing a message and verifying it is available as Sandbox here:
 
-[https://codesandbox.io/s/identify-user-with-signing-service-jp76b3?from-embed](https://codesandbox.io/s/identify-user-with-signing-service-jp76b3?from-embed)
+{% embed url="https://codesandbox.io/s/identify-user-with-signing-service-jp76b3?from-embed" %}
+
+<figure><img src="../.gitbook/assets/signing (1).gif" alt=""><figcaption></figcaption></figure>
 
