@@ -32,6 +32,7 @@
   * [Deploy an OpenZeppelin-Contract](how-to/setup-a-project-with-hardhat/deploy-an-openzeppelin-contract.md)
   * [Upgradable Contracts with OpenZeppelin](how-to/setup-a-project-with-hardhat/upgradable-contracts-with-openzeppelin.md)
 * [Identify User Wallets](how-to/identify-user-wallets.md)
+* [Identify a (X-)Node](how-to/identify-a-x-node.md)
 * [Transaction Dependency](how-to/transaction-dependency.md)
 * [Support Sync-Browser and Sync2(-Lite)](how-to/support-sync-browser-and-sync2-lite.md)
 * [Analytics](how-to/analytics.md)
