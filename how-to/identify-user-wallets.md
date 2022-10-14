@@ -41,6 +41,13 @@ The returned signed certificate anatomy is like this:
 
 In the web this can be used instantly. For backend communication it needs to be verified on the backend side.
 
+If only the signing service is used in the application, the `vendor` can be used directly without defining a node to connect to:
+
+```javascript
+// main, test or genesis ID if it's private network
+const vendor = new Connex.Vendor('main')
+```
+
 ### thor-devkit <a href="#6bc6" id="6bc6"></a>
 
 In none-UI environments the same can be accomplished using the wallets private key directly and [thor-devkit](https://presearch.com/search?q=thor-devkit):
