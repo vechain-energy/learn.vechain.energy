@@ -6,4 +6,4 @@ Do you want to connect, tap other developers or share your knowledge? Join us on
 
 This page is currently available at: [https://learn.vechain.energy](https://learn.vechain.energy/)
 
-You can suggest edits on GitLab at: [https://github.com/vechain-energy/learn.vechain.energy](https://github.com/vechain-energy/learn.vechain.energy)
+You can suggest edits on GitHub at: [https://github.com/vechain-energy/learn.vechain.energy](https://github.com/vechain-energy/learn.vechain.energy)
