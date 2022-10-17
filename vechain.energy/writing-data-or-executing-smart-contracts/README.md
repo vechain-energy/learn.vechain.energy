@@ -1,8 +1,8 @@
-# Writing data or executing smart contracts
+# Write data or execute smart contracts
 
 The state of a smart contract can be changed during a transaction. A transaction requires the signature of an authorized user and a gas fee paid in VTHO. The signed transaction is broadcast to a blockchain node. An authorized node updates the smart contract state and documents the transaction.
 
-The Transact-API provides access to transactions using a REST API. Signing and broadcasting is included.\
+The Transaction-API provides access to transactions using a REST API. Signing and broadcasting is included.\
 The OpenAPI Documentation is available at [https://vechain.energy/docs/api/transact](https://vechain.energy/docs/api/transact)
 
 The example uses a public contract and executes a function with an argument on the TestNet.
@@ -272,7 +272,6 @@ Each API-Key is created within the scope of a Sponsorship. The Sponsorship will 
 
 ## Endpoint
 
-{% swagger src="../.gitbook/assets/swagger-transaction.json" path="/by/{tokenId}/transaction" method="post" %}
-[swagger-transaction.json](../.gitbook/assets/swagger-transaction.json)
+{% swagger src="../../.gitbook/assets/swagger-transaction.json" path="/by/{tokenId}/transaction" method="post" %}
+[swagger-transaction.json](../../.gitbook/assets/swagger-transaction.json)
 {% endswagger %}
-

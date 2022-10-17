@@ -1,6 +1,8 @@
-# How to implement Fee Delegation?
+# Implementation
 
-## With Connex & Sync2
+In most situations the implementation of a signing service for a regular dApp is a one-liner configuration. All required work is done within Connex and Sync2.
+
+## With Connex & Sync2 as Wallet
 
 Connex has the `delegate()`-function enable fee delegation during transaction signing. Sync2 will automatically use the given URL for fee delegation:
 
@@ -13,7 +15,7 @@ const tx = await connex.vendor.sign('tx', clauses)
 
 Read more about it in the docs at [transaction signing service](https://docs.vechain.org/connex/api.html#transaction-signing-service).
 
-## Connex only
+## Connex and own Wallet Management
 
 ### **Build Transaction and enable Fee Delegation**
 
@@ -74,5 +76,4 @@ const signedTransaction = `0x${transaction.encode().toString('hex')}`
 const { id } = await post('https://testnet.veblocks.net/transactions', { raw: signedTransaction })
 ```
 
-A working example is available at the [Client Examples](https://vechain.energy/docs).\
-\
+A working example is available at the [Client Examples](https://vechain.energy/docs).

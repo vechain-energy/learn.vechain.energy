@@ -1,4 +1,4 @@
-# List of all APIs
+# API-Overview
 
 ## Read state data
 
@@ -19,4 +19,20 @@
 | OpenAPI Definition | [https://event.api.vechain.energy/swagger.json](https://event.api.vechain.energy/swagger.json) |
 | OpenAPI UI         | [https://vechain.energy/docs/api/event](https://vechain.energy/docs/api/event)                 |
 
-##
+## Write & execute contracts
+
+| Key                | Value                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| Endpoint MainNet   | https://sponsor.vechain.energy/by/{tokenId}/transaction                                        |
+| Endpoint TestNet   | https://sponsor-testnet.vechain.energy/by/{tokenId}/transaction                                |
+| OpenAPI Definition | [https://api.vechain.energy/documentation/json](https://api.vechain.energy/documentation/json) |
+| OpenAPI UI         | [https://vechain.energy/docs/api/transact](https://vechain.energy/docs/api/transact)           |
+
+## Signing Service / Fee delegation
+
+| Key                | Value                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| Endpoint MainNet   | https://sponsor.vechain.energy/by/{tokenId}                                                    |
+| Endpoint TestNet   | https://sponsor-testnet.vechain.energy/by/{tokenId}                                            |
+| OpenAPI Definition | [https://api.vechain.energy/documentation/json](https://api.vechain.energy/documentation/json) |
+| OpenAPI UI         | [https://vechain.energy/docs/api/sponsorship](https://vechain.energy/docs/api/sponsorship)     |

@@ -8,6 +8,8 @@ Every signing request of a **consumer** counts against the limits within the def
 
 For each request your contract is called with each clause and the rate limit is enforced in the API. Transaction origin, recipient and the transaction data are sent to your contract to identify the rate limit definition.
 
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
 ## Function-Definition
 
 Add this function to your contract to support verification:
