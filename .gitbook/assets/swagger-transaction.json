@@ -1,0 +1,208 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Submit Transactions for Signing and Broadcasting",
+    "description": "An API-Key is required, sign in on vechain.energy, create a Sponsorship and an API-Key. Gas fees are paid by created Sponsorship.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sponsor-testnet.vechain.energy",
+      "description": "TestNet"
+    },
+    {
+      "url": "https://sponsor.vechain.energy",
+      "description": "MainNet"
+    }
+  ],
+  "externalDocs": {
+    "description": "Find more information on vechain.energy",
+    "url": "https://vechain.energy"
+  },
+  "paths": {
+    "/by/{tokenId}/transaction": {
+      "post": {
+        "summary": "build & submit transaction",
+        "description": "Build a new transaction from given data, co-sign it by a sponsorship and broadcast to the network.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tokenId",
+            "description": "TokenId of the Sponsorship",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "x-private-key",
+            "description": "optional private key to sign transaction with, if not defined the api key is used",
+            "in": "header",
+            "required": false,
+            "example": "0x44682236956eb0440aa19613b383906397bb233e85183c1436028dd4cfb977da",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "success response",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "transaction id of the broadcast transation"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "url to transaction status at used blockchain node"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "description": "API-Key-Secret of an API-Key",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    },
+    "schemas": {
+      "TransactionRequest": {
+        "type": "object",
+        "properties": {
+          "clauses": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ClauseRequestSignature"
+                },
+                {
+                  "$ref": "#/components/schemas/ClauseRequestSignatureArgs"
+                },
+                {
+                  "$ref": "#/components/schemas/ClauseRequestAbi"
+                },
+                {
+                  "$ref": "#/components/schemas/ClauseRequestRaw"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "ClauseRequestSignature": {
+        "type": "string",
+        "description": "transaction clause defined via signature",
+        "example": "0x8384738C995D49C5b692560ae688fc8b51af1059.increment()"
+      },
+      "ClauseRequestSignatureArgs": {
+        "type": "object",
+        "description": "transaction clause defined via signature",
+        "properties": {
+          "to": {
+            "type": "string",
+            "example": "0x8384738C995D49C5b692560ae688fc8b51af1059"
+          },
+          "signature": {
+            "type": "string",
+            "example": "increment()"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": []
+          }
+        }
+      },
+      "ClauseRequestAbi": {
+        "type": "object",
+        "description": "transaction clause defined with abi",
+        "properties": {
+          "to": {
+            "type": "string",
+            "example": "0x8384738C995D49C5b692560ae688fc8b51af1059"
+          },
+          "abi": {
+            "type": "object",
+            "description": "AbiItem",
+            "example": {
+              "inputs": [],
+              "name": "increment",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            }
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": []
+          }
+        }
+      },
+      "ClauseRequestRaw": {
+        "type": "object",
+        "description": "transaction clause with raw data",
+        "properties": {
+          "to": {
+            "type": "string",
+            "example": "0x8384738C995D49C5b692560ae688fc8b51af1059"
+          },
+          "data": {
+            "type": "string",
+            "example": "0xd09de08a"
+          }
+        }
+      },
+      "PendingTransactionResult": {
+        "type": "object",
+        "description": "details about the broadcast transaction",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "transaction id of the broadcast transaction",
+            "example": "0xc73d69db4f3c1fa4987e3203d57f561a5f01df51d4862e40e2d64a608084859f"
+          },
+          "url": {
+            "type": "string",
+            "description": "url to transaction status at used blockchain node",
+            "example": "https://vethor-node-test.vechaindev.com/transactions/0xc73d69db4f3c1fa4987e3203d57f561a5f01df51d4862e40e2d64a608084859f?pending=true"
+          }
+        }
+      }
+    }
+  }
+}
