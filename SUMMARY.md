@@ -57,6 +57,14 @@
 
 ## vechain.energy
 
+* [Gas-Free Transactions with Fee Delegation](vechain.energy/gas-free-transactions-with-fee-delegation/README.md)
+  * [Whitelists](vechain.energy/gas-free-transactions-with-fee-delegation/whitelists.md)
+  * [Contract-Verification](vechain.energy/gas-free-transactions-with-fee-delegation/contract-verification.md)
+  * [Contract-Rate-Limits](vechain.energy/gas-free-transactions-with-fee-delegation/contract-rate-limits.md)
+  * [Implementation](vechain.energy/gas-free-transactions-with-fee-delegation/implementation.md)
+  * [Signing API](vechain.energy/gas-free-transactions-with-fee-delegation/signing-api.md)
+  * [Analytics & Event History](vechain.energy/gas-free-transactions-with-fee-delegation/analytics-and-event-history.md)
+  * [Misc.](vechain.energy/gas-free-transactions-with-fee-delegation/misc..md)
 * [Read data from smart contracts](vechain.energy/read-data-from-smart-contracts/README.md)
   * [States](vechain.energy/read-data-from-smart-contracts/states.md)
   * [Events & Logs](vechain.energy/read-data-from-smart-contracts/events-and-logs.md)
@@ -64,12 +72,6 @@
   * [API-Keys](vechain.energy/writing-data-or-executing-smart-contracts/api-keys.md)
   * [API-Usage](vechain.energy/writing-data-or-executing-smart-contracts/transaction.md)
   * [Response-Handling](vechain.energy/writing-data-or-executing-smart-contracts/response-handling.md)
-* [Gas-Free Transactions with Fee Delegation](vechain.energy/gas-free-transactions-with-fee-delegation/README.md)
-  * [Whitelists](vechain.energy/gas-free-transactions-with-fee-delegation/whitelists.md)
-  * [Contract-Verification](vechain.energy/gas-free-transactions-with-fee-delegation/contract-verification.md)
-  * [Contract-Rate-Limits](vechain.energy/gas-free-transactions-with-fee-delegation/contract-rate-limits.md)
-  * [Implementation](vechain.energy/gas-free-transactions-with-fee-delegation/implementation.md)
-  * [Signing API](vechain.energy/gas-free-transactions-with-fee-delegation/signing-api.md)
 * [Receive push on smart contract changes](vechain.energy/receive-push-on-smart-contract-changes/README.md)
   * [WebHooks](vechain.energy/receive-push-on-smart-contract-changes/webhooks.md)
 * [API-Overview](vechain.energy/api-overview.md)
