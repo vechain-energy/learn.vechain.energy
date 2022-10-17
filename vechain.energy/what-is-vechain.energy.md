@@ -30,7 +30,7 @@ When data on the blockchain changes, the change can trigger a configured HTTP-Re
 
 Running functionality in regular intervals on the blockchain is made possible by providing a scheduler that calls transactions a configurable intervals.
 
-### WIP: Identification
+### Identification
 
 Many standard applications allow to configure OAuth or OpenID Connect providers as an identity pool. An Auth-Layer in front of user wallets allows to identify user addresses. This brings wallet authentification to the masses of applications.
 

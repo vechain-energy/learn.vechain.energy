@@ -6,6 +6,6 @@ The user submitting a transaction sends it unsigned to the gas payer and request
 
 When the transaction is finalized, the gas costs are taken from the gas payers balance instead of the user submitting the transaction.​
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 ​

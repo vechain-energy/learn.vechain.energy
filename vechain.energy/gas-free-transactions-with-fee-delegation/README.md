@@ -8,7 +8,7 @@ The user adds the gas-payment-signature with his own in the transaction and subm
 
 When the transaction is added to the blockchain, the gas costs are taken from the gas payers balance instead of the user submitting the transaction.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 [vechain.energy](https://vechain.energy) offers the delegation as a service. The gas-payer is managed with Sponsorships that are managed by whitelists or with smart contracts.
 

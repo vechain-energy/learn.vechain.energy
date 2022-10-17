@@ -33,7 +33,7 @@ A password protects all interactions. Each transaction or signing action require
 
 The private key can be backed up as a word-phrase ([also known as memnonic phrase or seed phrase](https://en.wikipedia.org/wiki/Cryptocurrency\_wallet)). It is required to restore access to the generated identity and the wallet.
 
-![](<../../.gitbook/assets/image (2).png>) ![](<../../.gitbook/assets/image (6).png>) ![](<../../.gitbook/assets/image (1) (2).png>) ![](<../../.gitbook/assets/image (14).png>) ![](<../../.gitbook/assets/image (2) (1).png>)
+![](<../../.gitbook/assets/image (2) (2).png>) ![](<../../.gitbook/assets/image (6) (1).png>) ![](<../../.gitbook/assets/image (1) (2).png>) ![](<../../.gitbook/assets/image (14).png>) ![](<../../.gitbook/assets/image (2) (1).png>)
 
 ## TestNet vs. MainNet
 
