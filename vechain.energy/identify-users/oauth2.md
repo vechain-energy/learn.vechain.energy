@@ -7,7 +7,6 @@
 | Authorization URL (MainNet) | https://auth.api.vechain.energy/oauth2/authorize              |
 | Authorization URL (TestNet) | https://auth.api.vechain.energy/oauth2/authorize?network=test |
 | Token URL                   | https://auth.api.vechain.energy/oauth2/token                  |
-| Token Revocation URL        | https://auth.api.vechain.energy/oauth2/token/revoke           |
 | Userinfo URL                | https://auth.api.vechain.energy/oauth2/userinfo               |
 | Client ID                   | none                                                          |
 | Client secret               | none                                                          |

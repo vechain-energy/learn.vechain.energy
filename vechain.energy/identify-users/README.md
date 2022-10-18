@@ -14,3 +14,11 @@ The identification sequence involves the user signing a random code with its pri
 The access token is a base64 representation of the signature with the signed certificate, removing the storage need for it on the backend.
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+## Notes
+
+1. Expiration of Tokens is set to 1 year
+2. Access tokens are never stored online, they are only verified
+3. Revocation is currently not implemented because access tokens are not stored on the server, only verified on-the-fly
+4. `client_id` and `client_secret` are not validated
+   1. if used: the `client_id` needs to stay identical during authentification and is implemented in the user info endpoint
