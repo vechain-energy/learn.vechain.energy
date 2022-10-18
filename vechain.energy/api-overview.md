@@ -36,3 +36,14 @@
 | Endpoint TestNet   | https://sponsor-testnet.vechain.energy/by/{tokenId}                                            |
 | OpenAPI Definition | [https://api.vechain.energy/documentation/json](https://api.vechain.energy/documentation/json) |
 | OpenAPI UI         | [https://vechain.energy/docs/api/sponsorship](https://vechain.energy/docs/api/sponsorship)     |
+
+## Authentification (OAuth/OpenID)
+
+| Key                | Value                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Endpoint MainNet   | https://auth.api.vechain.energy/oauth2/authorize                                                                                     |
+| Endpoint TestNet   | https://auth.api.vechain.energy/oauth2/authorize?network=test                                                                        |
+| Discovery Document | [https://auth.api.vechain.energy/.well-known/openid-configuration](https://auth.api.vechain.energy/.well-known/openid-configuration) |
+| Documentation      | [https://learn.vechain.energy/vechain.energy/identify-users](https://learn.vechain.energy/vechain.energy/identify-users)             |
+| OpenAPI Definition | [https://auth.api.vechain.energy/swagger.json](https://auth.api.vechain.energy/swagger.json)                                         |
+| OpenAPI UI         | [https://testnet.vechain.energy/docs/api/auth](https://testnet.vechain.energy/docs/api/auth)                                         |
