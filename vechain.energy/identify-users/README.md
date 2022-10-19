@@ -1,11 +1,15 @@
 # Identify Users
 
-With a generic identity provider wallet identification can be integrated into existing application frameworks.
+With a generic identity provider a wallet identification can be integrated into existing application frameworks.
 
 **Supported providers are:**
 
 1. OAuth2
 2. OpenID Connect
+
+An example implementation can be tested here:
+
+[https://codesandbox.io/s/auth-service-test-page-25v0ev](https://codesandbox.io/s/auth-service-test-page-25v0ev)
 
 ## How it works
 
