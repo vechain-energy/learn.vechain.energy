@@ -279,7 +279,15 @@ logout
 sudo systemctl restart thor
 ```
 
+### Recommended Hardware
 
+|           | Minimum Specification         | Recommended Specification                             |
+| --------- | ----------------------------- | ----------------------------------------------------- |
+| CPU       | 8 Core                        | 16 Core                                               |
+| RAM       | 16 GB                         | 64 GB                                                 |
+| Disk      | 500 GB SSD                    | 2 TB SSD                                              |
+| Bandwidth | 10 Mbit                       | 20 Mbit                                               |
+| Security  | Hardened secure configuration | Hardened secure configuration DDOS and IDS protection |
 
 ### Links
 
