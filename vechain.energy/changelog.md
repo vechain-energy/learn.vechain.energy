@@ -4,9 +4,17 @@ _🏗️ current work in progress_
 
 * :unicorn: WebHook Management
 
-## Pending: 0.13.0
+## Pending
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+
+## 0.13.0
+
+* :unicorn: WebHooks can be simulated with or without real HTTP Requests
+* :paintbrush: WebHooks Interface improved to enable better history access
+* :gear: Add Sandbox link for information/testing purpose
+* :gear: Tool/Doc-Section improved to contain more generic links and information to remote resources
+* :gear: Generic Maintenance of upgrading used libraries
 
 ## 0.12.0
 
