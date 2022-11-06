@@ -75,6 +75,7 @@
   * [Response-Handling](vechain.energy/writing-data-or-executing-smart-contracts/response-handling.md)
 * [Receive push on smart contract changes](vechain.energy/receive-push-on-smart-contract-changes/README.md)
   * [WebHooks](vechain.energy/receive-push-on-smart-contract-changes/webhooks.md)
+* [Execute Transactions periodically](vechain.energy/execute-transactions-periodically.md)
 * [Identify Users](vechain.energy/identify-users/README.md)
   * [OAuth2](vechain.energy/identify-users/oauth2.md)
   * [OpenID Connect](vechain.energy/identify-users/openid-connect.md)

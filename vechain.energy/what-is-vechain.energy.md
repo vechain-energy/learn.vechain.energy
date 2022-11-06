@@ -26,9 +26,9 @@ Executing smart contract functions requires a wallet, transaction building and b
 
 When data on the blockchain changes, the change can trigger a configured HTTP-Request using WebHooks. Information flows back to other backends or services.
 
-### WIP: Automation
+### Automation
 
-Running functionality in regular intervals on the blockchain is made possible by providing a scheduler that calls transactions a configurable intervals.
+Running functionality in periodic intervals on the blockchain is made possible by providing a scheduler that calls transactions similar to a cronjob.
 
 ### Identification
 
