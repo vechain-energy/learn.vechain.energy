@@ -29,3 +29,9 @@ In the background the Sponsorships fee delegation is applied. The delegation nee
 Cronjob-format for the intervals. The configuration is guided with the UI and can also be entered manually.
 
 A preview of the next runs is show as confirmation.
+
+### Notes
+
+* New Schedulers will start nearly immediately on the next interval.
+* Updating intervals will be applied immediately, a previous scheduled transaction might still be executed.
+* Transactions are timed to be signed some seconds earlier than the interval to fit it the exact block of the interval. This might not work at all times, depending on network load and block size.
