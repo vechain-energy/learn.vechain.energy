@@ -2,11 +2,15 @@
 
 _🏗️ current work in progress_
 
-* :unicorn: WebHook Management
+* :paintbrush: UI/UX Improvements
 
 ## Pending
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+
+## 0.14.0
+
+* :unicorn: Transactions can be executed periodically using Schedulers
 
 ## 0.13.0
 

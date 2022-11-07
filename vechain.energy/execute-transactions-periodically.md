@@ -1,6 +1,6 @@
 # Execute Transactions periodically
 
-Every Sponsorship supports so called "Schedulers". Schedulers execute transactions periodically.
+Every Sponsorship supports so called "Schedulers" that execute transactions periodically.
 
 The required gas fees are paid by the sponsorship and transactions will appear in the regular event logs. Each schedule is assigned its own wallet. Its public address can be used to setup appropriate permissions on the contracts.
 
@@ -35,3 +35,4 @@ A preview of the next runs is show as confirmation.
 * New Schedulers will start nearly immediately on the next interval.
 * Updating intervals will be applied immediately, a previous scheduled transaction might still be executed.
 * Transactions are timed to be signed some seconds earlier than the interval to fit it the exact block of the interval. This might not work at all times, depending on network load and block size.
+* If a the transaction request fails multiple times (no VTHO in Sponsorship, Sponsorship Logic rejects transaction) then the scheduler will automatically pause. Reverted transactions do not count as an error.
