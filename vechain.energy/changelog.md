@@ -8,6 +8,14 @@ _🏗️ current work in progress_
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## Pending: 0.15.0
+
+* :unicorn: Sponsorships can be automatically request deposits from external wallets using approvals
+* :unicorn: Schedulers can now be simulated before execution. If enabled, only successful "[explained](https://docs.vechain.org/connex/api.html#explainer)" transactions will be executed to limit possible reverted transactions.
+* :unicorn: Transaction-API supports a new parameter to support simulation
+* :gear: API Keys list the associated wallet
+* :gear: Schedulers can be retried in case of error
+
 ## 0.14.0
 
 * :unicorn: Transactions can be executed periodically using Schedulers
