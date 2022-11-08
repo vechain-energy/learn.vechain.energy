@@ -2,13 +2,12 @@
 
 ## Deposits
 
-Every Sponsorship receives its own wallet. The wallet will pay for the gas fees and needs to be refilled by the Administrator.
-
-A history of all deposits is available as well as a list of all withdraws.
-
-The withdraw functionality supports only full withdraw.
-
-If VET is deposited, the VTHO generation of it is used fully for all gas payments.&#x20;
+* Every Sponsorship has a dedicated wallet.\
+  The wallet pays for the gas fees and needs to be refilled by an administrator.
+* A history of all deposits is available as well as a list of all withdraws.\
+  The withdraw functionality supports only full withdraw.
+* If VET is deposited, the VTHO generation of it is used fully for all gas payments.&#x20;
+* An automatic-deposit from external wallets can be configured.
 
 ## Team Management
 
