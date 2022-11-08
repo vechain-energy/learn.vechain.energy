@@ -23,6 +23,10 @@ In the background the Sponsorships fee delegation is applied. The delegation nee
 * Address of the contract to be called (`to` part of a transaction)
 * Function definition as ABI of a transaction
   * if it requires parameters, they will be an additional required input
+* Optionally a simulation can be run before transmitting a transaction.
+  * If enabled and a simulation fails, no transaction will be created and no gas will be used.
+  * If disabled, a transaction will always be submitted, even if it may revert.\
+    Reverted transactions will also use gas.
 
 ### Interval
 
