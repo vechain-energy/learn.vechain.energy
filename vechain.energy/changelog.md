@@ -8,6 +8,11 @@ _🏗️ current work in progress_
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## 0.15.1
+
+* :gear: Event logs load much faster now
+* :gear: Improved initial load time for Managers of multiple Sponsorships
+
 ## 0.15.0
 
 * :unicorn: Sponsorships can be automatically request deposits from external wallets using approvals
