@@ -8,6 +8,12 @@ _🏗️ current work in progress_
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## 0.16.0
+
+* :unicorn: Whitelist-Addresses Contracts can have an alias
+* :gear: Whitelists can be searched by address and alias
+* :gear: Improve burned VTHO display in Whitelists
+
 ## 0.15.1
 
 * :gear: Event logs load much faster now
