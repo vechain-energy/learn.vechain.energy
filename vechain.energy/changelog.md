@@ -3,10 +3,15 @@
 _🏗️ current work in progress_
 
 * :paintbrush: UI/UX Improvements
+* :unicorn: Contract-Management
 
 ## Pending
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+
+## 0.16.1
+
+* :bug: Sponsorship-Rejections are now corrrectly explained in the Event-Logs again
 
 ## 0.16.0
 
