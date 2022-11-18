@@ -9,6 +9,11 @@ _🏗️ current work in progress_
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## 0.16.2
+
+* :gear: Schedulers support data parameters instead of ABI definitions
+* :gear: Schedulers support multiple-clauses if data calls are defined instead of ABI calls
+
 ## 0.16.1
 
 * :bug: Sponsorship-Rejections are now corrrectly explained in the Event-Logs again
