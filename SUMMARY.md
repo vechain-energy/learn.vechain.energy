@@ -36,7 +36,8 @@
 * [Identify a (X-)Node](how-to/identify-a-x-node.md)
 * [Support Sync-Browser and Sync2(-Lite)](how-to/support-sync-browser-and-sync2-lite.md)
 * [Transaction Dependency](how-to/transaction-dependency.md)
-* [Analytics](how-to/analytics.md)
+* [Analytics](how-to/analytics/README.md)
+  * [Decode Transaction-Data](how-to/analytics/decode-transaction-data.md)
 * [Node](how-to/node/README.md)
   * [Setup Public Node](how-to/node/setup-public-node.md)
 
