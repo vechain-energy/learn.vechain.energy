@@ -18,7 +18,7 @@ const certificate = {
   purpose: "identification",
   payload: {
     type: "text",
-    content: session.code
+    content: session.signContent || session.code
   }
 };
 
