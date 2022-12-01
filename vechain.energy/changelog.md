@@ -9,6 +9,14 @@ _🏗️ current work in progress_
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## 0.17.0
+
+* :paintbrush: Sponsorships are now called Projects
+* :paintbrush: Administration is now project focused with all features always instantly available&#x20;
+* :unicorn: WebHooks are now assigned to a Project
+* :gear: WebHook Event-Logs improved for better JSON support (body + response)
+* :gear: Upgrade of used libraries
+
 ## 0.16.2
 
 * :gear: Schedulers support data parameters instead of ABI definitions
