@@ -4,6 +4,8 @@ All transactions related to the wallet of a Sponsorship are logged. In addition 
 
 The event history provides a filterable access to all transaction. It allows to identify missing sponsorship configuration, possible abuse detection and provides details to learn about contracts usage.
 
+If the information gathered can identify a wallet, information about about the used wallet is shown in the event history.
+
 ## Filters
 
 ### Timeframes
