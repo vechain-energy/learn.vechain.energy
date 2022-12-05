@@ -16,6 +16,7 @@ _🏗️ current work in progress_
   * Another email is sent when the balance recovers above value
 * :unicorn: Information about the used wallet is shown in the event logs
 * :gear: Webhook event definitions now support multiline and intents
+* :bug: Fix mobile display issues in Webhooks, Schedules and Auto-Deposit
 
 ## 0.17.0
 
