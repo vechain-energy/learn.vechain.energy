@@ -15,7 +15,6 @@ _🏗️ current work in progress_
   * An email is sent when the balance is below value
   * Another email is sent when the balance recovers above value
 * :unicorn: Information about the used wallet is shown in the event logs
-* :gear: WebHook event definitions now support multiline and intents
 
 ## 0.17.0
 
