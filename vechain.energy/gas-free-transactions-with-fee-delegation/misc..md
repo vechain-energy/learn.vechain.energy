@@ -7,7 +7,16 @@
 * A history of all deposits is available as well as a list of all withdraws.\
   The withdraw functionality supports only full withdraw.
 * If VET is deposited, the VTHO generation of it is used fully for all gas payments.&#x20;
-* An automatic-deposit from external wallets can be configured.
+
+### Automatic-Deposit
+
+Approval from a wallet can be configured to automatically deposit VTHO when the balance is below a configured level. The approval is only for VTHO for the selected address.
+
+### Notifications
+
+Email notifications can be configured when a certain level of VTHO is reached. A recovery notification will be sent too.
+
+The email address is stored on the blockchain encrypted with the public key of the sponsorships wallet.
 
 ## Team Management
 

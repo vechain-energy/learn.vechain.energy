@@ -14,6 +14,7 @@ _🏗️ current work in progress_
 * :unicorn: A notification can be configured for reaching low balance.
   * An email is sent when the balance is below value
   * Another email is sent when the balance recovers above value
+* :unicorn: Information about the used wallet is shown in the event logs
 
 ## 0.17.0
 
