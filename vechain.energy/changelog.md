@@ -8,6 +8,11 @@ _🏗️ current work in progress_
 ## Pending
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+* :paintbrush: Refactor/design of the Sponsorship Management
+
+## 0.18.1
+
+* :bug: Auto-Deposits and Notification-Configuration are now removed after a project is deleted
 
 ## 0.18.0
 
