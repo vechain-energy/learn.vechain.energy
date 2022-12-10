@@ -9,6 +9,8 @@ _🏗️ current work in progress_
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 * :paintbrush: Refactor/design of the Sponsorship Management
+  * Whitelists display the number of unique origins involved
+* :bug: Big event logs caused memory issues on the GraphQL Service, they are now used directly from the original REST source
 
 ## 0.18.1
 
