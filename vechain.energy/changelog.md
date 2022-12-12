@@ -8,6 +8,7 @@ _🏗️ current work in progress_
 ## Pending
 
 * :unicorn: New implementation ability to share Fee Delegation Configuration within a team
+* :unicorn: Insights of the past seven days of transactions activity with ability to filter/group/sort by recipient/origin/burn is now available
 * :paintbrush: Refactor/design of the Sponsorship Management
   * Whitelists display the number of unique origins involved
 * :bug: Big event logs caused memory issues on the GraphQL Service, they are now used directly from the original REST source
