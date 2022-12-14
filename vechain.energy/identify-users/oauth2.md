@@ -2,15 +2,16 @@
 
 ## Configuration
 
-| Configuration               | Value                                                         |
-| --------------------------- | ------------------------------------------------------------- |
-| Authorization URL (MainNet) | https://auth.api.vechain.energy/oauth2/authorize              |
-| Authorization URL (TestNet) | https://auth.api.vechain.energy/oauth2/authorize?network=test |
-| Token URL                   | https://auth.api.vechain.energy/oauth2/token                  |
-| Userinfo URL                | https://auth.api.vechain.energy/oauth2/userinfo               |
-| Client ID                   | none                                                          |
-| Client secret               | none                                                          |
-| Response type               | code                                                          |
+| Configuration               | Value                                                            |
+| --------------------------- | ---------------------------------------------------------------- |
+| Authorization URL (MainNet) | https://auth.api.vechain.energy/oauth2/authorize                 |
+| Authorization URL (TestNet) | https://auth.api.vechain.energy/oauth2/authorize?network=test    |
+| Token URL                   | https://auth.api.vechain.energy/oauth2/token                     |
+| Userinfo URL                | https://auth.api.vechain.energy/oauth2/userinfo                  |
+| Client ID                   | none                                                             |
+| Client secret               | none                                                             |
+| Response type               | code                                                             |
+| Available scopes            | <ul><li>identity</li><li>profile (provides a nickname)</li></ul> |
 
 ## Notes
 
@@ -27,7 +28,7 @@ SSO using Plugin [https://wordpress.org/plugins/oauth-client/](https://wordpress
 | Custom App Name        | VeChain                                          |
 | Client ID              | none                                             |
 | Client Secret          | none                                             |
-| Scope                  | address                                          |
+| Scope                  | identity                                         |
 | Authorize Endpoint     | https://auth.api.vechain.energy/oauth2/authorize |
 | Access Token Endpoint  | https://auth.api.vechain.energy/oauth2/token     |
 | Get User Info Endpoint | https://auth.api.vechain.energy/oauth2/userinfo  |

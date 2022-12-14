@@ -12,6 +12,7 @@
 | Token Keys URL              | https://auth.api.vechain.energy/jwks                             |
 | Client ID                   | none                                                             |
 | Client secret               | none                                                             |
+| Available scopes            | <ul><li>identity</li><li>profile (provides a nickname)</li></ul> |
 
 **The configuration can be tested using the OpenID Connect Playground from Auth0:**
 
@@ -36,4 +37,4 @@ Enterprise Connections support OpenID Connect with these settings:
 | Type          | Back Channel                                                     |
 | Client ID     | none                                                             |
 | Client Secret | none                                                             |
-| Scopes        | openid                                                           |
+| Scopes        | openid profile                                                   |

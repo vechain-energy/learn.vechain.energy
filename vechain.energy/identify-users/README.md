@@ -11,6 +11,15 @@ An example implementation can be tested here:
 
 [https://codesandbox.io/s/auth-service-test-page-25v0ev](https://codesandbox.io/s/auth-service-test-page-25v0ev)
 
+## Profile
+
+If the scope `profile` is requested during authentification, the user is prompted with a nickname select from an established source.
+
+At a later stage users can change their profile at:\
+[https://profile.vechain.energy](https://profile.vechain.energy/)
+
+The profile page also allows to manually enter a unique name, allowing to use vechain.energy as additional profile source.
+
 ## How it works
 
 The identification sequence involves the user signing a random code with its private key. The signature is verified and contains the signer address. The signer address is passed to the AuthClient to provide a verified identity.
