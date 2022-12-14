@@ -12,6 +12,7 @@ _🏗️ current work in progress_
 
 * :gear: Improve performance of whitelist management that got reduced during the previous updates
 * :gear: Add ability to select timeframe to transaction insights
+* :gear: Generic performance improvements for the administration interface
 
 ## 0.19.0
 
