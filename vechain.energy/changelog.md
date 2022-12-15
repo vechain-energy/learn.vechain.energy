@@ -8,6 +8,18 @@ _🏗️ current work in progress_
 
 :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## WIP: 0.20.0
+
+* :unicorn: Webhooks support the abi decoded function call of the call that triggered an event
+* :bug: Webhook simulation do correctly pre-fill filters for reserved keywords
+* :gear: Webhooks send the webhook id in the headers in `x-webhook-id` to the push recipient
+
+## 0.19.1
+
+* :gear: Improve performance of whitelist management that got reduced during the previous updates
+* :gear: Add ability to select timeframe to transaction insights
+* :gear: Generic performance improvements for the administration interface
+
 ## 0.19.0
 
 * :unicorn: Insights of the past seven days of transactions activity with ability to filter/group/sort by recipient/origin/burn is now available
