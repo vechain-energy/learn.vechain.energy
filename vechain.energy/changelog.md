@@ -8,11 +8,12 @@ _🏗️ current work in progress_
 
 :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
-## WIP: 0.20.0
+## 0.20.0
 
-* :unicorn: Webhooks support passing a decoded function call of the transaction triggereding the event
+* :unicorn: Webhooks support passing a decoded function call of the transaction triggering the event
 * :gear: Webhooks send the webhook id in the headers in `x-webhook-id` to the push recipient
-* :bug: Webhook simulation do correctly pre-fill filters for reserved keywords
+* :bug: Webhook simulation correctly pre-fills filters for reserved keywords of the Event-API
+* :bug: Webhook event logs are always sorted chronically
 * :bug: Minor UI issues when switching between projects or webhooks
 
 ## 0.19.1
