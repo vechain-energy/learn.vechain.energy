@@ -1,4 +1,4 @@
-# WebHooks
+# Webhooks
 
 Events emitted by contracts can trigger an API call using WebHooks.
 
@@ -28,6 +28,29 @@ The WebHook is a Web-Request that can be custom built with:
 5. Optional Headers that are sent with a request (i.e. for authorization)
 
 Emitted variables from the event or meta information from the transaction can be used as placeholder in the Headers, URL and Body of the Web-Request.
+
+### Placeholders
+
+* The parameters from the event are available to be passed as placeholder to the configured endpoint
+* Additionally generic transaction and block information is available to support manual verification
+
+#### Transaction Call as Placeholder
+
+The smart contract function triggering the event can be detected, decoded and information of it passed to the endpoint.
+
+For decoding the function signature is extracted and looked up at different sources:
+
+1. A configured decoding ABI in the Webhook
+2. The projects contract ABIs
+3. Public signature databases
+
+The placeholder is replaced with a JSON object with an object of the following attributes:
+
+1. `to` the contract that was called and triggered the event
+2. `value` the value of VET transferred during the transaction
+3. `name` the name of the function called
+4. `inputs` a list of inputs to the function, their data type and the value passed during function call
+5. `source` information about the source of the ABI definition
 
 ### Logs
 

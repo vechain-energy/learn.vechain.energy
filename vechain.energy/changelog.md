@@ -10,9 +10,10 @@ _🏗️ current work in progress_
 
 ## WIP: 0.20.0
 
-* :unicorn: Webhooks support the abi decoded function call of the call that triggered an event
-* :bug: Webhook simulation do correctly pre-fill filters for reserved keywords
+* :unicorn: Webhooks support passing a decoded function call of the transaction triggereding the event
 * :gear: Webhooks send the webhook id in the headers in `x-webhook-id` to the push recipient
+* :bug: Webhook simulation do correctly pre-fill filters for reserved keywords
+* :bug: Minor UI issues when switching between projects or webhooks
 
 ## 0.19.1
 
