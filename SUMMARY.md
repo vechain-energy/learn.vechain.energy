@@ -67,6 +67,7 @@
   * [Signing API](vechain.energy/gas-free-transactions-with-fee-delegation/signing-api.md)
   * [Analytics & Event History](vechain.energy/gas-free-transactions-with-fee-delegation/analytics-and-event-history.md)
   * [Misc.](vechain.energy/gas-free-transactions-with-fee-delegation/misc..md)
+  * [Checklist for Go-Live](vechain.energy/gas-free-transactions-with-fee-delegation/checklist-for-go-live.md)
 * [Read data from smart contracts](vechain.energy/read-data-from-smart-contracts/README.md)
   * [States](vechain.energy/read-data-from-smart-contracts/states.md)
   * [Events & Logs](vechain.energy/read-data-from-smart-contracts/events-and-logs.md)
