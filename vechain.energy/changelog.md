@@ -8,6 +8,12 @@ _🏗️ current work in progress_
 
 :unicorn: New implementation ability to share Fee Delegation Configuration within a team
 
+## 0.21.0
+
+* :unicorn: Ability to debug Webhooks better with on-chain-event comparison
+* :gear: Past Webhook events can be simulated and re-sent
+* :art: Display of Webhook log details improved
+
 ## 0.20.0
 
 * :unicorn: Webhooks support passing a decoded function call of the transaction triggering the event
