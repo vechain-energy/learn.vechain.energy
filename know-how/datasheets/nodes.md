@@ -4,8 +4,6 @@ description: List of known trustworthy public nodes.
 
 # Nodes
 
-Official node source code, deployment guide: [https://github.com/vechain/thor](https://github.com/vechain/thor)
-
 ## TestNet
 
 * https://testnet.vecha.in (Official)
@@ -24,3 +22,9 @@ Official node source code, deployment guide: [https://github.com/vechain/thor](h
   * Alternative: https://mainnet02.vechain.fi.blockorder.net
   * Alternative: https://mainnet02.vechain.de.blockorder.net
 * https://node.vechain.energy (by [vechain.energy](https://vechain.energy))
+
+## Links
+
+* Official node source code, deployment guide: [https://github.com/vechain/thor](https://github.com/vechain/thor)
+* [Example Public-Node-Setup](../../how-to/node/setup-public-node.md)
+* [Status-Page for availability check of Nodes](https://nodes.status.vechain.energy)
