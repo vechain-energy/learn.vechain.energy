@@ -31,8 +31,9 @@ Emitted variables from the event or meta information from the transaction can be
 
 ### Placeholders
 
-* The parameters from the event are available to be passed as placeholder to the configured endpoint
-* Additionally generic transaction and block information is available to support manual verification
+* Parameters from the event are available to be passed as placeholder to the configured endpoint
+* Information from the clause of the transaction that triggered the event are available
+* Generic transaction and block information is available to support manual verification
 
 #### Transaction Call as Placeholder
 

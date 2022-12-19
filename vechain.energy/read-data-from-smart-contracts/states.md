@@ -104,8 +104,9 @@ curl 'https://call.api.vechain.energy/main/0x0000000000000000000000000000456E657
 
 Multiple states from different sources can be loaded. The request is always for a single network.
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>const ENDPOINT = 'https://call.api.vechain.energy'
-</strong>const NETWORK = 'main'
+```javascript
+const ENDPOINT = 'https://call.api.vechain.energy'
+const NETWORK = 'main'
 const CONTRACT_ADDRESS = '0x0000000000000000000000000000456E65726779'
 const ARG1_ADDRESS = '0x0000000000000000000000000000000000000000'
 const FUNCTION_CALL = `balanceOf(address ${ARG1_ADDRESS}) public view returns(uint256 balance)`
@@ -118,7 +119,8 @@ const body = { clauses:
     ] }
 
 const result = await window.fetch(url, { method: 'POST', body: JSON.stringify(body) })
-const balances = await result.json()</code></pre>
+const balances = await result.json()
+```
 
 **curl**
 
@@ -135,8 +137,9 @@ There are some limits to this type that come especially with the complexity of l
 
 ### ABI
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>const ENDPOINT = 'https://call.api.vechain.energy'
-</strong>const NETWORK = 'main'
+```javascript
+const ENDPOINT = 'https://call.api.vechain.energy'
+const NETWORK = 'main'
 const CONTRACT_ADDRESS = '0x0000000000000000000000000000456E65726779'
 const ARG1_ADDRESS = '0x0000000000000000000000000000000000000000'
 const ABI = {
@@ -161,7 +164,8 @@ const body = { clauses:
     ] }
 
 const result = await window.fetch(url, { method: 'POST', body: JSON.stringify(body) })
-const balances = await result.json()</code></pre>
+const balances = await result.json()
+```
 
 **curl**
 
@@ -184,4 +188,3 @@ curl 'https://call.api.vechain.energy/main' \
 4. [API, Link, base64 decoded Blockchain SVG](https://call.api.vechain.energy/main/0x5bE4dC49e862cb28571664e3e692e61E8bf25F26/createTom\(\)%20returns%20\(string\)?decodeBase64=1\&contentType=image/svg%2Bxml)
 5. [React, Connex, multiple values](https://codesandbox.io/s/read-multiple-contract-states-with-connex-0rvos0)
 6. [React, API, useFetch, multiple values](https://codesandbox.io/s/read-multiple-contract-states-with-call-api-usefetch-kwir33)
-

@@ -77,8 +77,9 @@ With the GET-Request a quick access is given that supports a direct integration 
 
 The URL of the request is a combination of the network, contract address, event signature and optionally filters:
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>const ENDPOINT = 'https://event.api.vechain.energy'
-</strong>const NETWORK = 'main'
+```javascript
+const ENDPOINT = 'https://event.api.vechain.energy'
+const NETWORK = 'main'
 const CONTRACT_ADDRESS = '0x0000000000000000000000000000456E65726779'
 const FILTER = {
     _to: '0x0000000000000000000000000000456E65726779',
@@ -87,15 +88,16 @@ const FILTER = {
 }
 const EVENT_DEFINITION = `event Transfer(address indexed _from, address indexed _to, uint256 _value)`
 
-const filterQuery = Object.keys(FILTER).map(key => key + '=' + FILTER[key]).join('&#x26;');
+const filterQuery = Object.keys(FILTER).map(key => key + '=' + FILTER[key]).join('&');
 const url = `${ENDPOINT}/${NETWORK}/${CONTRACT_ADDRESS}/${encodeURI(EVENT_DEFINITION)}?${filterQuery}`
 
 const result = await window.fetch(url)
-const logs = await result.json()</code></pre>
+const logs = await result.json()
+```
 
 **Example Link:**
 
-****[https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20](https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer\(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value\)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20)
+\*\*\*\*[https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20](https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer\(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value\)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20)
 
 **curl**
 
@@ -113,8 +115,9 @@ curl 'https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65
 
 Different events or different filters are available within a POST-Request. Pagination is applied the whole list. The request is always for a single network.
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>const ENDPOINT = 'https://event.api.vechain.energy'
-</strong>const NETWORK = 'main'
+```javascript
+const ENDPOINT = 'https://event.api.vechain.energy'
+const NETWORK = 'main'
 const CONTRACT_ADDRESS = '0x0000000000000000000000000000456E65726779'
 const EVENT_DEFINITION = `event Transfer(address indexed _from, address indexed _to, uint256 _value)`
 
@@ -129,7 +132,8 @@ const body = { events:
     }
 
 const result = await window.fetch(url, { method: 'POST', body: JSON.stringify(body) })
-const logs = await result.json()</code></pre>
+const logs = await result.json()
+```
 
 **curl**
 
@@ -157,7 +161,6 @@ Because the name is flexible, possible conflicts with existing parameters of the
 ## Examples
 
 1. [React, Connex](https://codesandbox.io/s/list-event-logs-from-contract-with-connex-3wotwr)
-2. [React, API, window.fetch, single event filter](https://codesandbox.io/s/list-event-logs-from-contract-with-api-fetch-099e7i)&#x20;
+2. [React, API, window.fetch, single event filter](https://codesandbox.io/s/list-event-logs-from-contract-with-api-fetch-099e7i)
 3. [React, API, useFetch, single event filter](https://codesandbox.io/s/list-event-logs-from-contract-with-api-usefetch-ekichj)
 4. [React, API, useFetch, multiple event filters](https://codesandbox.io/s/list-event-logs-from-contract-with-multiple-filters-using-api-usefetch-cc66i6)
-

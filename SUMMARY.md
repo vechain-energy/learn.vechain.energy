@@ -83,5 +83,4 @@
   * [OpenID Connect](vechain.energy/identify-users/openid-connect.md)
   * [verify correctness](vechain.energy/identify-users/verify-correctness.md)
 * [API-Overview](vechain.energy/api-overview.md)
-* [Changelog](vechain.energy/changelog.md)
 * [Privacy Statement](vechain.energy/privacy-statement.md)
