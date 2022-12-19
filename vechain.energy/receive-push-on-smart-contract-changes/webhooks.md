@@ -47,11 +47,9 @@ For decoding the function signature is extracted and looked up at different sour
 
 The placeholder is replaced with a JSON object with an object of the following attributes:
 
-1. `to` the contract that was called and triggered the event
-2. `value` the value of VET transferred during the transaction
-3. `name` the name of the function called
-4. `inputs` a list of inputs to the function, their data type and the value passed during function call
-5. `source` information about the source of the ABI definition
+1. `name` the name of the function called
+2. `inputs` a list of inputs to the function, their data type and the value passed during function call
+3. `source` information about the source of the ABI definition
 
 ### Logs
 
