@@ -8,7 +8,7 @@
 | Authorization URL (MainNet) | https://auth.api.vechain.energy/oauth2/authorize                 |
 | Authorization URL (TestNet) | https://auth.api.vechain.energy/oauth2/authorize?network=test    |
 | Token URL                   | https://auth.api.vechain.energy/oauth2/token                     |
-| Userinfo URL                | https://auth.api.vechain.energy/oauth2/userinf                   |
+| Userinfo URL                | https://auth.api.vechain.energy/oauth2/userinfo                  |
 | Token Keys URL              | https://auth.api.vechain.energy/jwks                             |
 | Client ID                   | none                                                             |
 | Client secret               | none                                                             |
