@@ -1,4 +1,4 @@
-# Sessions
+# Session-Storage
 
 It can be challenging to create user authentication without the ability to create deep links between applications. For instance, when setting up a Discord bot to authenticate users, either the bot must have a public URL that is accessible on the internet or the user must manually enter their information.
 
