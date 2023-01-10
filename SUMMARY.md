@@ -54,6 +54,7 @@
 * [Misc. Snippets](coding/misc.-snippets/README.md)
   * [call contract with curl](coding/misc.-snippets/call-contract-with-curl.md)
   * [generate private key from shell](coding/misc.-snippets/generate-private-key-from-shell.md)
+  * [Interaction with Sync2](coding/misc.-snippets/interaction-with-sync2.md)
 * [Helpful Links](coding/helpful-links.md)
 * [Common Pitfalls](coding/common-pitfalls/README.md)
   * [Multi-Task atomic Transactions](coding/common-pitfalls/multi-task-atomic-transactions.md)
