@@ -55,6 +55,9 @@
   * [call contract with curl](coding/misc.-snippets/call-contract-with-curl.md)
   * [generate private key from shell](coding/misc.-snippets/generate-private-key-from-shell.md)
 * [Helpful Links](coding/helpful-links.md)
+* [Common Pitfalls](coding/common-pitfalls/README.md)
+  * [Multi-Task atomic Transactions](coding/common-pitfalls/multi-task-atomic-transactions.md)
+  * [BuiltIn Storage Access](coding/common-pitfalls/builtin-storage-access.md)
 
 ## vechain.energy
 
