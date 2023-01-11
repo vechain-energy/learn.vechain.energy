@@ -38,6 +38,7 @@
 * [Transaction Dependency](how-to/transaction-dependency.md)
 * [Analytics](how-to/analytics/README.md)
   * [Decode Transaction-Data](how-to/analytics/decode-transaction-data.md)
+  * [ABI Lookup using raw data](how-to/analytics/abi-lookup-using-raw-data.md)
 * [Node](how-to/node/README.md)
   * [Setup Public Node](how-to/node/setup-public-node.md)
 
