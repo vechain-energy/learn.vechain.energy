@@ -95,8 +95,9 @@ const result = await window.fetch(url)
 const logs = await result.json()
 ```
 
-**Example Link:**\
-****[https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20](https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer\(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value\)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20)
+**Example Link:**
+
+\*\*\*\*[https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20](https://event.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/event%20Transfer\(address%20indexed%20\_from,%20address%20indexed%20\_to,%20uint256%20\_value\)?\_to=0x0000000000000000000000000000456E65726779\&offset=0\&limit=20)
 
 **curl**
 
