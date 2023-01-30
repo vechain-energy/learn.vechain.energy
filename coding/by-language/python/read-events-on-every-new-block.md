@@ -1,5 +1,7 @@
 # Read Events on every new Block
 
+## Pull on every new block
+
 1. listen for new blocks using a ticker
 2. filter for a specific list of events in the new block (source: github json list)
 
@@ -73,3 +75,61 @@ while True:
 ```
 
 Shared by: [https://twitter.com/crypto\_milos](https://twitter.com/crypto\_milos)
+
+
+
+## Push from WebSocket Subscription
+
+This example uses WebSockets to get notified on new events when they arrive:
+
+```python
+#!/usr/bin/python3
+import requests
+import json
+import asyncio
+import websockets
+from thor_devkit.abi import Event
+from thor_requests.contract import Contract
+
+# Define ABIs and contract objects
+mpv3_listings_abi = requests.get('https://raw.githubusercontent.com/vechain/b32/master/ABIs/vesea_mpv3_listings.json').json()
+mvp3_listings_contract = Contract({"abi": mpv3_listings_abi})
+mvp3_listings_address = '0xDafCA4A51eA97B3b5F21171A95DAbF540894a55A'
+
+mvp3_offers_abi = requests.get('https://raw.githubusercontent.com/vechain/b32/master/ABIs/vesea_mpv3_offers.json').json()
+mvp3_offers_contract = Contract({"abi": mvp3_offers_abi})
+mvp3_offers_address = '0xdab185ca52b70e087ec0990ad59c612c3d7aab14'
+
+# Define function to decode data
+def decode_data(json_response, address):
+    contract = mvp3_listings_contract if address == mvp3_listings_address else mvp3_offers_contract
+    event = contract.get_event_by_signature(bytes.fromhex(json_response["topics"][0][2:]))
+    decode_data = Event(contract.get_abi(event.get_name())).decode(
+        data=bytes.fromhex(json_response['data'][2:]), 
+        topics=[bytes.fromhex(topic[2:]) for topic in json_response['topics'][:4]]
+    )
+    
+    return event.get_name(), decode_data
+
+# Define async function to listen to address
+async def listen_to_address(address):
+    async with websockets.connect(f'wss://node-mainnet.vechain.energy/subscriptions/event?addr={address}') as ws:
+        while True:
+            json_response = json.loads(await ws.recv())
+            event_name, data = decode_data(json_response, address)
+            print(f'{address}: {event_name}, {data}')
+
+# Define main function
+async def main():
+    addresses = [mvp3_listings_address, mvp3_offers_address]
+    tasks = [listen_to_address(address) for address in addresses]
+    await asyncio.gather(*tasks)
+
+# Run main function
+asyncio.run(main())
+```
+
+Shared by:
+
+* [https://twitter.com/TomFromVechain](https://twitter.com/TomFromVechain)
+* [https://twitter.com/crypto\_milos](https://twitter.com/crypto\_milos)
