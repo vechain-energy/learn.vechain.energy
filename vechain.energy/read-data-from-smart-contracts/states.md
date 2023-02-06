@@ -7,7 +7,7 @@ The OpenAPI Documentation is available at [https://vechain.energy/docs/api/call]
 
 The example uses a public contract and calls a function with an argument.
 
-## Conditions
+## Example Conditions
 
 ### Source Code
 
@@ -86,12 +86,12 @@ const balance = await result.json()
 
 **Example Link:**
 
-[https://call.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/balanceOf(address%200x0000000000000000000000000000000000000000)%20public%20view%20returns(uint256%20balance)](https://call.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/balanceOf\(address%200x0000000000000000000000000000000000000000\)%20public%20view%20returns\(uint256%20balance\))
+[https://api.vechain.energy/v1/call/main/0x0000000000000000000000000000456E65726779/balanceOf(address%200x0000000000000000000000000000000000000000)%20public%20view%20returns(uint256%20balance)](https://api.vechain.energy/v1/call/main/0x0000000000000000000000000000456E65726779/balanceOf\(address%200x0000000000000000000000000000000000000000\)%20public%20view%20returns\(uint256%20balance\))
 
 **curl**
 
 ```shell
-curl 'https://call.api.vechain.energy/main/0x0000000000000000000000000000456E65726779/balanceOf(address%200x0000000000000000000000000000000000000000)%20public%20view%20returns(uint256%20balance)'
+curl 'https://api.vechain.energy/v1/callmain/0x0000000000000000000000000000456E65726779/balanceOf(address%200x0000000000000000000000000000000000000000)%20public%20view%20returns(uint256%20balance)'
 ```
 
 ### Endpoint
@@ -100,12 +100,44 @@ curl 'https://call.api.vechain.energy/main/0x0000000000000000000000000000456E657
 [https://call.api.vechain.energy/swagger.json](https://call.api.vechain.energy/swagger.json)
 {% endswagger %}
 
+## Reading a structure with a GET-Request
+
+A struct contains multiple attributes that are assigned to a single variable.
+
+A signature needs to wrap the struct with `(` and `)`.
+
+For example [https://github.com/vechain/b32/blob/0abac3a31290a01ecb94131ccb25b7fea3ad66f7/ABIs/vesea\_profiles.json](https://github.com/vechain/b32/blob/0abac3a31290a01ecb94131ccb25b7fea3ad66f7/ABIs/vesea\_profiles.json)
+
+Its signature output will be:
+
+```
+… returns (profile(address profileAddress, string name, bool blacklisted, bool verified, bool payWithVSea, uint256 profileTypeId, address pfpContract, uint256 pfpTokenId, uint256 blockCreated))
+```
+
+The result is a list of values:
+
+```json
+[
+    "0x0000000000000000000000000000000000000000",
+    "",
+    false,
+    false,
+    false,
+    "0",
+    "0x0000000000000000000000000000000000000000",
+    "0",
+    "0"
+]
+```
+
+Example-Link: [https://api.vechain.energy/v1/call/main/0xdaeda865296CeE66dc6863f9e93751f00B3606Fb/getProfile%20(address%200xdaeda865296CeE66dc6863f9e93751f00B3606Fb)%20returns%20(profile(address%20profileAddress,%20string%20name,%20bool%20blacklisted,%20bool%20verified,%20bool%20payWithVSea,%20uint256%20profileTypeId,%20address%20pfpContract,%20uint256%20pfpTokenId,%20uint256%20blockCreated))](https://api.vechain.energy/v1/call/main/0xdaeda865296CeE66dc6863f9e93751f00B3606Fb/getProfile%20\(address%200xdaeda865296CeE66dc6863f9e93751f00B3606Fb\)%20returns%20\(profile\(address%20profileAddress,%20string%20name,%20bool%20blacklisted,%20bool%20verified,%20bool%20payWithVSea,%20uint256%20profileTypeId,%20address%20pfpContract,%20uint256%20pfpTokenId,%20uint256%20blockCreated\)\))
+
 ## Reading multiple variables in one Request
 
 Multiple states from different sources can be loaded. The request is always for a single network.
 
 ```javascript
-const ENDPOINT = 'https://call.api.vechain.energy'
+const ENDPOINT = 'https://api.vechain.energy/v1/call'
 const NETWORK = 'main'
 const CONTRACT_ADDRESS = '0x0000000000000000000000000000456E65726779'
 const ARG1_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -125,7 +157,7 @@ const balances = await result.json()
 **curl**
 
 ```shell
-curl 'https://call.api.vechain.energy/main' \
+curl 'https://api.vechain.energy/v1/call/main' \
   --data-raw '{"clauses":[{"to":"0x0000000000000000000000000000456E65726779","signature":"balanceOf(address 0x0000000000000000000000000000000000000000) public view returns(uint256 balance)"},{"to":"0x0000000000000000000000000000456E65726779","signature":"balanceOf(address 0x0000000000000000000000000000000000000000) public view returns(uint256 balance)"}]}'
 ```
 
@@ -138,7 +170,7 @@ There are some limits to this type that come especially with the complexity of l
 ### ABI
 
 ```javascript
-const ENDPOINT = 'https://call.api.vechain.energy'
+const ENDPOINT = 'https://api.vechain.energy/v1/call'
 const NETWORK = 'main'
 const CONTRACT_ADDRESS = '0x0000000000000000000000000000456E65726779'
 const ARG1_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -170,7 +202,7 @@ const balances = await result.json()
 **curl**
 
 ```shell
-curl 'https://call.api.vechain.energy/main' \
+curl 'https://api.vechain.energy/v1/call/main' \
   --data-raw '{"clauses":[{"to":"0x0000000000000000000000000000456E65726779","abi":{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},"args":["0x0000000000000000000000000000000000000000"]},{"to":"0x0000000000000000000000000000456E65726779","abi":{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},"args":["0x0000000000000000000000000000000000000000"]}]}'
 ```
 
