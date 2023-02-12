@@ -61,4 +61,4 @@ Each request is logged with the sent data and received response. Only the past h
 2. Changes on WebHooks require up to 15 minutes to be applied in production
 3. Currently there are no restrictions, it is possible that limits are introduced at a later stage
 
-<figure><img src="../../../.gitbook/assets/image (19).png" alt=""><figcaption><p>WebHook Example</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption><p>WebHook Example</p></figcaption></figure>

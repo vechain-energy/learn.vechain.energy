@@ -1,5 +1,7 @@
 # Wallets
 
+* [VeWorld](https://www.veworld.net/)
+  * Chrome based extension
 * [Sync2](https://docs.vechain.org/sync2/get-started.html)
   * Designed to work with all mainstream web browsers (e.g., Chrome, Safari, MS Edge, Firefox, etc), desktop, and mobile devices.
 * [Sync2 Lite](https://lite.sync.vecha.in/#/)

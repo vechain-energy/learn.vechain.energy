@@ -82,7 +82,7 @@
   * [API-Usage](vechain.energy/writing-data-or-executing-smart-contracts/transaction.md)
   * [Response-Handling](vechain.energy/writing-data-or-executing-smart-contracts/response-handling.md)
 * [Receive push on smart contract changes](vechain.energy/receive-push-on-smart-contract-changes/README.md)
-  * [Webhooks](vechain.energy/receive-push-on-smart-contract-changes/webhooks/README.md)
+  * [Webhooks](vechain.energy/receive-push-on-smart-contract-changes/webhooks.md)
     * [Debugging](vechain.energy/receive-push-on-smart-contract-changes/webhooks/debugging.md)
     * [Backfilling](vechain.energy/receive-push-on-smart-contract-changes/webhooks/backfilling.md)
 * [Execute Transactions periodically](vechain.energy/execute-transactions-periodically.md)
