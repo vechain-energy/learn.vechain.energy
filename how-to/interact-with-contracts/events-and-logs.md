@@ -1,0 +1,112 @@
+# Events & Logs
+
+Events are signals that are emitted from smart contracts. Every event is logged, immutable and accessable using a blockchain node only. Smart contracts can not access events themself.
+
+Client-Applications can either listen to events and act accordingly or use logged events to access historical data.
+
+The example uses a public contract and paginates thru the results.
+
+## Conditions
+
+### Source Code
+
+The VTHO contract's source code is available on GitHub:\
+[https://github.com/vechain/thor/blob/f58c17ae50f1ec8698d9daf6e05076d17dcafeaf/builtin/gen/energy.sol](https://github.com/vechain/thor/blob/f58c17ae50f1ec8698d9daf6e05076d17dcafeaf/builtin/gen/energy.sol)
+
+### Contract address
+
+The public VTHO contract is used. Address is identical on Test and MainNet.
+
+```solidity
+0x0000000000000000000000000000456E65726779
+```
+
+### ABI
+
+Definition of the `event Transfer` that is emitted on every VTHO Transfer.
+
+```json
+ {
+    "anonymous": false,
+    "inputs": [
+        {
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+        },
+        {
+            "indexed": true,
+            "name": "_to",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }
+    ],
+    "name": "Transfer",
+    "type": "event"
+}
+```
+
+### Event definition
+
+```solidity
+event Transfer(address indexed _from, address indexed _to, uint256 _value);
+```
+
+### Connex Example using Account Visitor
+
+```typescript
+const event = connex.thor.account(CONTRACT_ADDRESS).event(ABI);
+const logs = await event
+  .filter([{ _to: address }])
+  .order("desc")
+  .apply(0, 20);
+  
+console.log(logs)
+```
+
+### Connex Example using Thor Filter
+
+```typescript
+import { abi } from "thor-devkit";
+
+const coder = new abi.Event(ABI)
+const topics = TransferCoder.encode({ _to: address });
+
+const events = await connex.thor
+  .filter("event", [
+    {
+      address: CONTRACT_ADDRESS,
+      topic0: topicsFrom[0] || undefined,
+      topic1: topicsFrom[1] || undefined,
+      topic2: topicsFrom[2] || undefined,
+      topic3: topicsFrom[3] || undefined,
+      topic4: topicsFrom[4] || undefined
+    }
+  ])
+  .order("desc")
+  .apply(0, 20);
+
+const logs = events.map(event => {
+  return {
+    ...event,
+    decoded: coder.decode(event.data, event.topics)
+  };
+})
+console.log(logs)
+```
+
+## Examples
+
+1. [React, Connex](https://codesandbox.io/s/list-event-logs-from-contract-with-connex-3wotwr)
+2. [React, Connex, connex.thor.filter](https://codesandbox.io/s/list-event-logs-from-contract-with-connex-2-0xhyqm?file=/src/App.tsx)
+
+{% hint style="info" %}
+vechain.energy offers a REST-API for simplified access.
+
+[Learn more about it here.](../../vechain.energy/read-data-from-smart-contracts/events-and-logs.md)
+{% endhint %}
+

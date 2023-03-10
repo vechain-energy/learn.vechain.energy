@@ -21,6 +21,10 @@
 
 ## how-to
 
+* [Interact with Contracts](how-to/interact-with-contracts/README.md)
+  * [States & View-Functions](how-to/interact-with-contracts/states.md)
+  * [Events & Logs](how-to/interact-with-contracts/events-and-logs.md)
+  * [Execute Functions](how-to/interact-with-contracts/states-1.md)
 * [Create a Wallet](how-to/create-a-wallet/README.md)
   * [Sync2](how-to/create-a-wallet/sync2.md)
   * [shell + openssl](how-to/create-a-wallet/shell-+-openssl.md)
