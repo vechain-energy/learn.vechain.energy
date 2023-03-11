@@ -2,7 +2,7 @@
 
 ## Private Data Leakage due BuiltIn-Storage-Access
 
-As Ethereum developer `private` and `internal` variables are expected to be private within contracts. On VeChain a public storage allows contracts to access all state variables of each other, there is no private storage.
+As Ethereum developer `private` and `internal` variables are expected to be private within contracts. On vechain a public storage allows contracts to access all state variables of each other, there is no private storage.
 
 #### Ethereums State Variable Visibility
 
@@ -21,10 +21,10 @@ Solidity-by-example explains this as potential vulnerability on Ethereum here:\
 [https://solidity-by-example.org/hacks/accessing-private-data/](https://solidity-by-example.org/hacks/accessing-private-data/)
 {% endhint %}
 
-#### VeChain Prototypes storageFor
+#### Vechain Prototypes storageFor
 
 {% hint style="warning" %}
-VeChain uses a custom prototype for all accounts that adds functionality:\
+Vechain uses a custom prototype for all accounts that adds functionality:\
 [https://github.com/vechain/thor/blob/master/builtin/gen/prototype.sol](https://github.com/vechain/thor/blob/master/builtin/gen/prototype.sol)
 {% endhint %}
 

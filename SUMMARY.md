@@ -1,10 +1,10 @@
 # Table of contents
 
-* [Getting Started on VeChain](README.md)
+* [Getting Started on vechain](README.md)
 
 ## Know How
 
-* [What is VeChain?](know-how/what-is-vechain.md)
+* [What is vechain?](know-how/what-is-vechain.md)
 * [What is Fee Delegation?](know-how/what-is-fee-delegation/README.md)
   * [How does Fee Delegation work?](know-how/what-is-fee-delegation/how-does-fee-delegation-work.md)
   * [How to implement Fee Delegation?](know-how/what-is-fee-delegation/how-to-implement-fee-delegation.md)

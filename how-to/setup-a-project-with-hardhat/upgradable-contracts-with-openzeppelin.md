@@ -21,7 +21,7 @@ npx hardhat
 ✨ Config file created ✨
 ```
 
-### Configure to VeChain-Network <a href="#user-content-configure-to-vechain-network" id="user-content-configure-to-vechain-network"></a>
+### Configure to vechain network <a href="#user-content-configure-to-vechain-network" id="user-content-configure-to-vechain-network"></a>
 
 Configure the network in `hardhat.config.js`:
 

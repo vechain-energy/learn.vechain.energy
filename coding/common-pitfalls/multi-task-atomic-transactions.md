@@ -4,7 +4,7 @@ Multi-Task atomic transactions allow developers to batch payments, add multiple 
 
 ## Remote Dependency control due Multi-Clause-Transactions
 
-Multi-Clause-Transactions are an atomic compilation of multiple transactions into one. Every transaction on VeChain has at least one clause. If one clause fails, the whole transaction will revert.
+Multi-Clause-Transactions are an atomic compilation of multiple transactions into one. Every transaction on vechain has at least one clause. If one clause fails, the whole transaction will revert.
 
 Because of this dependency a bad actor can manually call contracts and add a custom clause that reverts if the outcome is not as expected.
 

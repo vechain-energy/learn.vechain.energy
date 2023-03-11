@@ -17,7 +17,7 @@ cd thor
 make
 ```
 
-### Setup VeChainThor Node
+### Setup VechainThor Node
 
 ```bash
 sudo vi /etc/systemd/system/thor.service
@@ -28,7 +28,7 @@ Adjust placeholders in `<>:`
 {% code title="/etc/systemd/system/thor.service" %}
 ```systemd
 [Unit]
-Description=VeChain-Thor-Node
+Description=Vechain-Thor-Node
 
 Wants=network.target
 After=syslog.target network-online.target

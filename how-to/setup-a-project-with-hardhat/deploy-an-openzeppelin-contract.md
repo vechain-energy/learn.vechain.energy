@@ -41,7 +41,7 @@ contract MyToken is ERC20, Ownable {
 }
 ```
 
-### Connect to VeChain-Network <a href="#user-content-connect-to-vechain-network" id="user-content-connect-to-vechain-network"></a>
+### Connect to vechain network <a href="#user-content-connect-to-vechain-network" id="user-content-connect-to-vechain-network"></a>
 
 Configure the network in `hardhat.config.js`:
 

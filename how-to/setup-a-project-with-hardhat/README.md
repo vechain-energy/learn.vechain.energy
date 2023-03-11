@@ -6,7 +6,7 @@ Setup example project using the Hardhat Documentation at: [https://hardhat.org/g
 
 For testing purpose the "basic sample project" was chosen.
 
-### Enable VeChain-Thor <a href="#user-content-enable-vechain-thor" id="user-content-enable-vechain-thor"></a>
+### Enable vechain thor <a href="#user-content-enable-vechain-thor" id="user-content-enable-vechain-thor"></a>
 
 Install our `hardhat-thor` plugin.
 

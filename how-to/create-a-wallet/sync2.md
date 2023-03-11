@@ -1,6 +1,6 @@
 # Sync2
 
-Most VeChain applications implement [connex](https://docs.vechain.org/connex/) that automatically uses Sync2 as Application when a user action is required:
+Most vechain applications implement [connex](https://docs.vechain.org/connex/) that automatically uses Sync2 as Application when a user action is required:
 
 1. GitHub: [https://github.com/vechain/sync2](https://github.com/vechain/sync2)
 2. Website: [https://docs.vechain.org/sync2/get-started.html](https://docs.vechain.org/sync2/get-started.html)

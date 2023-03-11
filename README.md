@@ -1,6 +1,6 @@
-# Getting Started on VeChain
+# Getting Started on vechain
 
-This repository provides information and instructions for developers to get started with development in the VeChain-ecosystem.
+This repository provides information and instructions for developers to get started with development in the vechain-ecosystem.
 
 Do you want to connect, tap other developers or share your knowledge? Join us on [Discord](https://discord.gg/dhVCVNbHRT).
 
