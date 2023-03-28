@@ -145,6 +145,11 @@ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 sudo mkdir -p /var/lib/letsencrypt/.well-known
 sudo chgrp nginx /var/lib/letsencrypt
 sudo chmod g+s /var/lib/letsencrypt
+sudo mkdir /etc/nginx/snippets
+```
+
+```bash
+sudo vi /etc/nginx/snippets/letsencrypt.conf
 ```
 
 {% code title="/etc/nginx/snippets/letsencrypt.conf" %}
@@ -157,6 +162,10 @@ location ^~ /.well-known/acme-challenge/ {
 }
 ```
 {% endcode %}
+
+```bash
+sudo vi /etc/nginx/snippets/ssl.conf
+```
 
 {% code title="/etc/nginx/snippets/ssl.conf" %}
 ```nginx
@@ -182,6 +191,10 @@ add_header X-Content-Type-Options nosniff;
 {% endcode %}
 
 adjust nginx configuration:
+
+```bash
+sudo vi /etc/nginx/conf.d/node.conf
+```
 
 {% code title="/etc/nginx/conf.d/node.conf" %}
 ```nginx
