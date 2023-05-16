@@ -7,8 +7,7 @@ description: >-
 
 # Virtual Proxy Node
 
-````mermaid  fullWidth="false"
-```mermaid
+```mermaid  fullWidth="false"
 sequenceDiagram
     participant Client
     participant VN as Virtual Node
@@ -29,7 +28,7 @@ sequenceDiagram
             VN-->>Client: Forward Reply
         end
     end
-````
+```
 
 ## Addresses
 
