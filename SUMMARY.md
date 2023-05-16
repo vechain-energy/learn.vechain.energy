@@ -68,6 +68,7 @@
 
 ## vechain.energy
 
+* [Virtual Proxy Node](vechain.energy/virtual-proxy-node.md)
 * [What is vechain.energy?](vechain.energy/what-is-vechain.energy.md)
 * [Gas-Free Transactions with Fee Delegation](vechain.energy/gas-free-transactions-with-fee-delegation/README.md)
   * [Whitelists](vechain.energy/gas-free-transactions-with-fee-delegation/whitelists.md)
