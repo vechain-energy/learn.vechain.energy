@@ -7,30 +7,29 @@ description: >-
 
 # Virtual Proxy Node
 
-```mermaid  fullWidth="false"
+````mermaid  fullWidth="false"
+```mermaid
 sequenceDiagram
     participant Client
     participant VN as Virtual Node
     participant LAN as Last Active Node
 
     Client->>VN: Request
-    break is Websocket connection
+    alt Websocket connection required
         VN-->>LAN: Open Websocket Connection
         VN-->Client: Proxy Communication
     end
 
-    loop find active node
+    loop until valid reply
         VN-->>LAN: Forward Request
-            LAN-->>VN: Reply
-        alt errornous reply
-            loop find synchronized node
-                VN-->>VN: switch active node
-            end
+        LAN-->>VN: Reply
+        alt Error in reply
+            VN-->>VN: Switch to next active node
         else
-            VN-->>Client: Foward Reply
+            VN-->>Client: Forward Reply
         end
     end
-```
+````
 
 ## Addresses
 
