@@ -64,7 +64,7 @@ sudo systemctl status thor
 
 ### Setup Web-Server
 
-Access via `nginx`&#x20;
+Access via `nginx`
 
 ```bash
 sudo yum install -y nginx
@@ -276,6 +276,31 @@ sudo crontab -e
 
 ```systemd
 0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(3600))' && certbot -q renew --renew-hook "systemctl reload nginx"
+```
+
+### Health-Check
+
+The node is healthy if it is available via web and synchronized to the latest block. Calling `/blocks/best` on the node will provide information about the latest block and its unix timestamp.
+
+The timestamp can be used to decide the age of the node and act accordingly:
+
+```sh
+yum install -y apk curl
+```
+
+```bash
+#!/usr/bin/env bash
+
+maxAge=$((10 * 10))
+currentBlockTimestamp=$(curl -s http://localhost/blocks/best | jq .timestamp)
+now=$(date +%s)
+
+if [ $currentBlockTimestamp -le $((now - maxAge))  ] ; then
+    echo "FAIL: older than $maxAge seconds"
+    systemctl restart thor
+else
+    echo "OK"
+fi
 ```
 
 ### Update Node
