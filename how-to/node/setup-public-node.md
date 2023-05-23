@@ -285,7 +285,7 @@ The node is healthy if it is available via web and synchronized to the latest bl
 The timestamp can be used to decide the age of the node and act accordingly:
 
 ```sh
-yum install -y apk curl
+yum install -y jq curl
 ```
 
 ```bash
