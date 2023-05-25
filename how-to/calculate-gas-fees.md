@@ -30,7 +30,6 @@ In simplified terms, the calculation can be expressed as:
 * Each clause in the transaction incurs a cost of 16000.
 * Zero bytes in the transaction cost 4 each.
 * Non-zero bytes in the transaction cost 68 each.
-*
 
 Performing this calculation for all the clauses in a transaction will give us the first number. Here's a code snippet that accomplishes that:
 
