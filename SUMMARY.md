@@ -40,6 +40,7 @@
 * [Identify a (X-)Node](how-to/identify-a-x-node.md)
 * [Support Sync-Browser and Sync2(-Lite)](how-to/support-sync-browser-and-sync2-lite.md)
 * [Transaction Dependency](how-to/transaction-dependency.md)
+* [Calculate Gas Fees](how-to/calculate-gas-fees.md)
 * [Analytics](how-to/analytics/README.md)
   * [Decode Transaction-Data](how-to/analytics/decode-transaction-data.md)
   * [ABI Lookup using raw data](how-to/analytics/abi-lookup-using-raw-data.md)
