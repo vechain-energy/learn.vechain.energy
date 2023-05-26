@@ -11,6 +11,7 @@
   * [How to deploy with Fee Delegation?](know-how/what-is-fee-delegation/how-to-deploy-with-fee-delegation.md)
 * [Datasheets](know-how/datasheets/README.md)
   * [APIs](know-how/datasheets/apis.md)
+  * [Compatibility](know-how/datasheets/compatibility.md)
   * [Contracts](know-how/datasheets/contracts.md)
   * [DEX](know-how/datasheets/dex.md)
   * [Explorers](know-how/datasheets/explorers.md)
