@@ -9,16 +9,7 @@
   * [How does Fee Delegation work?](know-how/what-is-fee-delegation/how-does-fee-delegation-work.md)
   * [How to implement Fee Delegation?](know-how/what-is-fee-delegation/how-to-implement-fee-delegation.md)
   * [How to deploy with Fee Delegation?](know-how/what-is-fee-delegation/how-to-deploy-with-fee-delegation.md)
-* [Datasheets](know-how/datasheets/README.md)
-  * [APIs](know-how/datasheets/apis.md)
-  * [Compatibility](know-how/datasheets/compatibility.md)
-  * [Contracts](know-how/datasheets/contracts.md)
-  * [DEX](know-how/datasheets/dex.md)
-  * [Explorers](know-how/datasheets/explorers.md)
-  * [Links](know-how/datasheets/links.md)
-  * [Nodes](know-how/datasheets/nodes.md)
-  * [SDKs](know-how/datasheets/sdks.md)
-  * [Wallets](know-how/datasheets/wallets.md)
+* [Datasheet](know-how/datasheets.md)
 
 ## how-to
 

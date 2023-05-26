@@ -15,11 +15,11 @@ The status of the transaction can be verified using the returned transaction url
 
 **Example:**
 
-****[https://testnet.veblocks.net/transactions/0x62f1b2492ac6158799f80de2f418766d2d0ea8c98130d0d2138944dbc884c54f?pending=true](https://testnet.veblocks.net/transactions/0x62f1b2492ac6158799f80de2f418766d2d0ea8c98130d0d2138944dbc884c54f?pending=true)
+[https://testnet.veblocks.net/transactions/0x62f1b2492ac6158799f80de2f418766d2d0ea8c98130d0d2138944dbc884c54f?pending=true](https://testnet.veblocks.net/transactions/0x62f1b2492ac6158799f80de2f418766d2d0ea8c98130d0d2138944dbc884c54f?pending=true)
 
 If `meta` in the response is `null` then the transaction is still pending. If the transaction was completed, `meta` will have information about the block containing the transaction.
 
-****
+
 
 **Good practice would be to:**
 

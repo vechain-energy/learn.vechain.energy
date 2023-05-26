@@ -10,9 +10,9 @@ API-Keys are created in the Web-Interface for each Sponsorship. An API-Key-Secre
 
 Within the API-Key encoded is a private key that will sign all future transactions by default.
 
-| Menu                                                                         | Configuration                                                                            |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| <img src="../../.gitbook/assets/image (21).png" alt="" data-size="original"> | <h3><img src="../../.gitbook/assets/image (1) (1).png" alt="" data-size="original"></h3> |
+| Menu                                                                        | Configuration                                                                            |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| <img src="../../.gitbook/assets/image (5).png" alt="" data-size="original"> | <h3><img src="../../.gitbook/assets/image (1) (1).png" alt="" data-size="original"></h3> |
 
 ## Permissions
 

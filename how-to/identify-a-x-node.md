@@ -261,15 +261,7 @@ For example Token Id `1` results are:
 
 The level can be translated into a readable name to with the following table:
 
-| Level | Name                        |
-| ----- | --------------------------- |
-| 1     | VeChainThor Strength Node   |
-| 2     | VeChainThor Thunder Node    |
-| 3     | VeChainThor Mjolnir Node    |
-| 4     | VeChainThor X Node          |
-| 5     | VeChainThor Strength X Node |
-| 6     | VeChainThor Thunder X Node  |
-| 7     | VeChainThor Mjolnir X Node  |
+<table><thead><tr><th width="155">Level</th><th>Name</th></tr></thead><tbody><tr><td>1</td><td>VeChainThor Strength Node</td></tr><tr><td>2</td><td>VeChainThor Thunder Node</td></tr><tr><td>3</td><td>VeChainThor Mjolnir Node</td></tr><tr><td>4</td><td>VeChainThor X Node</td></tr><tr><td>5</td><td>VeChainThor Strength X Node</td></tr><tr><td>6</td><td>VeChainThor Thunder X Node</td></tr><tr><td>7</td><td>VeChainThor Mjolnir X Node</td></tr></tbody></table>
 
 ## Links <a href="#cdba" id="cdba"></a>
 

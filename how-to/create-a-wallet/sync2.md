@@ -19,7 +19,15 @@ Sync2-lite is the official web-application at [https://lite.sync.vecha.in/#/](ht
 
 During the fist visit it will ask to confirm that it might be unstable and a disclaimer, both need to be acknowledged:
 
-![](<../../.gitbook/assets/image (17).png>) ![](<../../.gitbook/assets/image (20).png>)
+<div align="center">
+
+<img src="../../.gitbook/assets/image (17).png" alt="">
+
+ 
+
+<img src="../../.gitbook/assets/image (20).png" alt="">
+
+</div>
 
 ## Setup
 
@@ -27,7 +35,23 @@ _A locally installed Sync2 application is identical to the web application of Sy
 
 A password protects all interactions. Each transaction or signing action requires a password. Set the wallet password next and the wallet is generated right afterwards.
 
-![](<../../.gitbook/assets/image (23).png>) ![](<../../.gitbook/assets/image (8).png>) ![](<../../.gitbook/assets/image (3).png>) ![](<../../.gitbook/assets/image (11).png>)
+<div align="left">
+
+<img src="../../.gitbook/assets/image (23).png" alt="">
+
+ 
+
+<img src="../../.gitbook/assets/image (8).png" alt="">
+
+ 
+
+<img src="../../.gitbook/assets/image (3).png" alt="">
+
+ 
+
+<img src="../../.gitbook/assets/image (11).png" alt="">
+
+</div>
 
 ## Backup
 
