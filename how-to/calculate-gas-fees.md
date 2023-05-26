@@ -177,7 +177,7 @@ The base price increases proportionally based on the priority setting.
 
 Since the base price is multiplied by the other gas values, it substantially increases the total gas.
 
-### Maximum Price
+## Maximum Price
 
 Accessing the latest block (for example via `/blocks/best` on the node) provides access to the `gasLimit`. Thats the maximum gas usage allowed per block and lazy developers might use it instead of calculating the price.
 
