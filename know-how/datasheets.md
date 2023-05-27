@@ -100,6 +100,7 @@
 
 ## Wallets
 
+* Derivation Path: `m/44'/818'/0'/0/0`
 * [VeWorld](https://www.veworld.net/)
   * Chrome based extension
 * Sync2
