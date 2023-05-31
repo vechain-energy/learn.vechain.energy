@@ -34,7 +34,7 @@ Transfer (address indexed from, address indexed to, uint256 indexed tokenId)
 ### Modifier
 
 ```javascript
-async (payload, event) => {
+async ({ payload, event }) => {
    // use simplified signature syntax
    const tokenUri = await Energy.call({
      to: payload.contract,

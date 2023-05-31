@@ -26,8 +26,8 @@ sequenceDiagram
 The modifier function is called with two arguments, the original Body and the raw Event:
 
 ```javascript
-(body, event) => {
-    return { body, event }
+({ payload, event }) => {
+    return { payload, event }
 }
 ```
 
@@ -38,8 +38,8 @@ The expected output and data posted to the endpoint will be a JSON containing `{
 Example for an async-await function is:
 
 ```javascript
-async (body, event) => {
-    return { body, event }
+async ({ payload, event }) => {
+    return { payload, event }
 }
 ```
 
@@ -72,7 +72,7 @@ Energy.call: (
 Using the balanceOf ABI from the VTHO contract the balance of the transaction origin is returned and will be passsed to the Webhook endpoint:
 
 ```typescript
-async (body, event) => {
+async ({ event }) => {
   const originVthoBalance = await Energy.call({
       to: "0x0000000000000000000000000000456E65726779",
       abi: {"type":"function","name":"balanceOf","constant":true,"stateMutability":"view","payable":false,"inputs":[{"type":"address","name":"owner"}],"outputs":[{"type":"uint256"}]},
@@ -110,7 +110,7 @@ Energy.call: (
 Using the Signature definition of a token transfer, the very first VTHO transfer is read and the  balance of the participants before the transfer returned.
 
 ```typescript
-async (body, event) => {
+async ({ payload, event }) => {
   const [firstTransfer] = await Energy.events({
       address: "0x0000000000000000000000000000456E65726779",
       signature: "Transfer (address indexed _from, address indexed _to, uint256 _value)"
@@ -129,7 +129,7 @@ async (body, event) => {
     }
     ], { formatEther: true, revision: firstTransfer._meta.blockNumber - 1 })
 
-  return { firstTransfer, senderBalance, recipientBalance }
+  return { payload, firstTransfer, senderBalance, recipientBalance }
 }
 ```
 
