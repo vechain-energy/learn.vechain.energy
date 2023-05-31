@@ -13,8 +13,8 @@ The functionality available within the modifier script is limited to pure javasc
 ```mermaid
 sequenceDiagram
     Blockchain->>Webhook: Trigger Event
-    Webhook-->>Webhook: build configured Body
-    Webhook-->>Function: modifierFunction(Body, rawEvent)
+    Webhook-->>Webhook: prepare Payload
+    Webhook-->>Function: modifierFunction({ payload, event })
     Function-->>Function: Execute
     Function-->>Webhook: result
     Webhook-->>Endpoint: send result
@@ -23,7 +23,7 @@ sequenceDiagram
 
 ## Function Definition
 
-The modifier function is called with two arguments, the original Body and the raw Event:
+The modifier function is called with two arguments, the original Payload and the raw Event:
 
 ```javascript
 ({ payload, event }) => {
@@ -31,7 +31,12 @@ The modifier function is called with two arguments, the original Body and the ra
 }
 ```
 
-The expected output and data posted to the endpoint will be a JSON containing `{ body, event }`.
+The returned values will be passed on to the configured Endpoint.
+
+| Attribute | Description                                           |
+| --------- | ----------------------------------------------------- |
+| `payload` | Manually configured Payload with placeholders filled. |
+| `event`   | Raw event information                                 |
 
 ### Async Function
 
