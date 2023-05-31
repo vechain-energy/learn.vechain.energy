@@ -6,7 +6,7 @@ description: >-
 
 # Scripts
 
-Running custom javascript snippets support a custom modification of the body that will be sent to the Endpoint. The configured Body is run thru the modifier function and the result will be passsed to the Endpoint.
+Running custom JavaScript snippets supports custom modification of the body that will be sent to the Endpoint. The configured Body is run through the modifier function, and the result will be passed to the Endpoint.
 
 The functionality available within the modifier script is limited to pure javascript functions and connectivity functions that allow to fetch additional data.
 
@@ -23,7 +23,7 @@ sequenceDiagram
 
 ## Function Definition
 
-The modifier function is called with two arguments, the original Payload and the raw Event:
+The modifier function is called with an object that has the original Payload and the raw Event as attributes:
 
 ```javascript
 ({ payload, event }) => {
@@ -40,7 +40,7 @@ The returned values will be passed on to the configured Endpoint.
 
 ### Async Function
 
-Example for an async-await function is:
+An example of an async-await function is:
 
 ```javascript
 async ({ payload, event }) => {
@@ -52,9 +52,9 @@ async ({ payload, event }) => {
 
 Some generic functions that provide connectivity to other services for data enhancement are available. For example reading contract data or event information.
 
-### Call-API
+### Call-API&#x20;
 
-Does a POST request to the [Call-API](../../../read-data-from-smart-contracts/states.md) in the background. The result will be returned.
+The [Call-API](../../../read-data-from-smart-contracts/states.md) allows you to make a POST request in the background to execute a specific function call on a smart contract. It is used to interact with smart contracts and retrieve data from them. The result of the function call is returned as the response. This API is typically used for read operations on the blockchain.
 
 ```typescript
 type Network = 'main' | 'test'
@@ -90,7 +90,7 @@ async ({ event }) => {
 
 ### Events-API
 
-Does a POST request to the [Event-API](../../../read-data-from-smart-contracts/events-and-logs.md) in the background. The result will be returned.
+The [Event-API](../../../read-data-from-smart-contracts/events-and-logs.md), on the other hand, allows you to make a POST request in the background to retrieve events emitted by smart contracts. Events are emitted when specific actions occur on the blockchain, such as token transfers or contract state changes. The API fetches these events based on defined criteria, such as contract address and event signature. The result of the API call is the collection of events that match the specified criteria.
 
 ```typescript
 type Network = 'main' | 'test'
