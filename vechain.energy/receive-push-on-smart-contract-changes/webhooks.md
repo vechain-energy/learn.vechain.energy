@@ -24,10 +24,10 @@ The WebHook is a Web-Request that can be custom built with:
 1. Request Method (i.e. `GET`/`POST`/`PUT`/etc.)
 2. Endpoint URL (the URL to call)
 3. Content-Type Header
-4. Body that is sent with `POST` and `PUT` requests
+4. Payload that is sent with `POST` and `PUT` requests
 5. Optional Headers that are sent with a request (i.e. for authorization)
 
-Emitted variables from the event or meta information from the transaction can be used as placeholder in the Headers, URL and Body of the Web-Request.
+Emitted variables from the event or meta information from the transaction can be used as placeholder in the Headers, URL and Payload of the Web-Request.
 
 ### Placeholders
 

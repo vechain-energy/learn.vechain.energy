@@ -49,7 +49,7 @@ Some generic functions that provide connectivity to other services for data enha
 
 ### Call-API
 
-Does a POST request to the [Call-API](../../read-data-from-smart-contracts/) in the background. The result will be returned.
+Does a POST request to the [Call-API](../../../read-data-from-smart-contracts/) in the background. The result will be returned.
 
 ```typescript
 type Network = 'main' | 'test'
@@ -85,7 +85,7 @@ async (body, event) => {
 
 ### Events-API
 
-Does a POST request to the [Event-API](../../../coding/by-language/python/read-events-on-every-new-block.md) in the background. The result will be returned.
+Does a POST request to the [Event-API](../../../../coding/by-language/python/read-events-on-every-new-block.md) in the background. The result will be returned.
 
 ```typescript
 type Network = 'main' | 'test'
