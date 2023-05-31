@@ -13,11 +13,13 @@ The functionality available within the modifier script is limited to pure javasc
 ```mermaid
 sequenceDiagram
     Blockchain->>Webhook: Trigger Event
-    Webhook-->>Webhook: prepare Payload
-    Webhook-->>Function: modifierFunction({ payload, event })
-    Function-->>Function: Execute
-    Function-->>Webhook: result
-    Webhook-->>Endpoint: send result
+    Webhook-->>Webhook: prepare payload
+    opt if modifier script is configured
+      Webhook-->>Function: modifierFunction({ payload, event })
+      Function-->>Function: run
+      Function-->>Webhook: return modified payload
+    end
+    Webhook-->>Endpoint: send payload
 
 ```
 
