@@ -133,7 +133,10 @@ async (body, event) => {
 }
 ```
 
+### Limits
 
+* Maximum Execution Time is 10 seconds
+* Total Memory Limit is 128 MB
 
 
 
