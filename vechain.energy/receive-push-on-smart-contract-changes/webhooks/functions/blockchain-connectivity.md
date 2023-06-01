@@ -54,10 +54,10 @@ type EventOptions = {
     order?: 'asc' | 'desc'
 }
 
-Energy.call: (
+Energy.events: (
     events: RequestEvent | RequestEvent[],
     options?: EventOptions
-) => Promise<any>
+) => Promise<any[]>
 ```
 
 #### Example
