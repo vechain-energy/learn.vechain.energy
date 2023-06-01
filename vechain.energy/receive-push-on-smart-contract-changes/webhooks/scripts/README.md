@@ -1,14 +1,15 @@
 ---
 description: >-
-  Modifying the body for simplified processing or enhancing with other
-  information can be accomplished with scripts.
+  A Webhook-Function is a pure JavaScript function that runs in an isolated
+  environment as last processing step before passing it to the receiving
+  endpoint.
 ---
 
 # Functions
 
 Running custom functions to modify the Payload that will be sent to the Endpoint. The configured Payload is run through the modifier function, and the result will be passed to the Endpoint.
 
-The functionality available within the modifier script is limited to pure javascript functions and connectivity functions that allow to fetch additional blockchain data (cross-vechain).
+The available functionality is limited to pure javascript functions and connectivity functions that allow to fetch additional blockchain data (cross-vechain).
 
 ```mermaid
 sequenceDiagram
