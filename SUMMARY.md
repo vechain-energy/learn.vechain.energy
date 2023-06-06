@@ -85,6 +85,7 @@
     * [Backfilling](vechain.energy/receive-push-on-smart-contract-changes/webhooks/backfilling.md)
     * [Functions](vechain.energy/receive-push-on-smart-contract-changes/webhooks/scripts/README.md)
       * [Blockchain-Connectivity](vechain.energy/receive-push-on-smart-contract-changes/webhooks/functions/blockchain-connectivity.md)
+      * [Available APIs](vechain.energy/receive-push-on-smart-contract-changes/webhooks/functions/available-apis.md)
       * [Examples](vechain.energy/receive-push-on-smart-contract-changes/webhooks/scripts/examples.md)
 * [Execute Transactions periodically](vechain.energy/execute-transactions-periodically.md)
 * [Identify Users](vechain.energy/identify-users/README.md)
