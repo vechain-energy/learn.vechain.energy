@@ -1,0 +1,47 @@
+import { Callout } from 'nextra/components'
+
+# Options
+
+<Callout type="info">
+Changes to a Webhook require up to 15 minutes to take effect.
+</Callout>
+
+
+## Data Conversion
+
+Certain data types can be automatically converted before being passed to an endpoint.
+
+- `uint` can converted using `ethers.formatEther` 
+- `bytes` can be converted into strings
+
+## Filters
+
+Filters provide the ability to filter data before they are passed to the endpoint.
+
+For example, NFT minting can be detected by filtering transfers from the address(0) (`0x0000000000000000000000000000000000000000`).
+
+
+## Retry Webhook
+
+In certain situations, resending a webhook may be required.
+
+Single events can be retried from the log details, multiple events from the log list.
+
+![](./webhook-retry.gif)
+
+## Backfilling
+
+Backfilling allows triggering webhooks for past events, which can be useful for indexing purposes. A selected contract address and the desired block range can retroactively trigger Webhooks.
+
+![](./webhook-backfill.gif)
+
+
+## Clone
+
+Cloning a Webhooks copies the configuration and creates a disabled new Webhook.
+
+
+## Enable / Disable
+
+Disabling a Webhook pauses its execution. It can be resumed at any later state.
+

@@ -1,0 +1,255 @@
+# How to Obtain a List of Token Owners for a NFT Contract
+
+The question of obtaining a list of all token owners is frequently asked in our [Developer Discord](https://bit.ly/energy-discord). The information is not readily available and must be collected from current on-chain data. This article will present two methods for obtaining the information:
+
+1. Tracking ownership through transfer events
+2. Looping through the total supply and reading each token's owner
+
+Both methods will be explained in this article.
+
+# By Tracking Token Transfers
+
+Every time a token is created, transferred, or burned, a `Transfer` event is emitted, which can be used to track the complete history and activity of a NFT collection. This event is a standard and must be emitted by every NFT-compliant contract.
+
+## Locating the Transfer Event
+
+The `Transfer` event definition is:
+
+```sol
+event Transfer(address indexed _from, address indexed _to, uint256 indexed tokenId);
+```
+
+```json
+{
+    "anonymous": false,
+    "inputs": [
+        {
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+        },
+        {
+            "indexed": true,
+            "name": "_to",
+            "type": "address"
+        },
+        {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256"
+        }
+    ],
+    "name": "Transfer",
+    "type": "event"
+}
+```
+
+For the purpose of this example, the "Galaxy Portraits" contract will be used because it is quick to load:
+
+```
+0xe92FDDD633008C1bca6E738725d2190cD46DF4a1
+```
+
+The event information can be retrieved in a loop using Connex, with the events being loaded in ascending order (oldest first) in chunks of 256 entries. The loop will stop once there is no more information available:
+
+
+```js
+  const event = connex.thor.account(address).event(ABI);
+  const transfers = [];
+  do {
+    const logs = await event
+      .filter([])
+      .order("asc")
+      .apply(transfers.length, 256);
+    logs.forEach(({ decoded, meta }) =>
+      transfers.push({ ...decoded, meta })
+    );
+    if (!logs.length) {
+      break;
+    }
+  } while (true);
+```
+
+The result will be a list of all transfers for each token in the collection.
+
+Example data set:
+
+```json
+{
+  "0": "0x0000000000000000000000000000000000000000",
+  "1": "0xe025f7e334c1ee6ca6063b149f3b9ab06b917c35",
+  "2": "101",
+  "_from": "0x0000000000000000000000000000000000000000",
+  "_to": "0xe025f7e334c1ee6ca6063b149f3b9ab06b917c35",
+  "tokenId": "101",
+  "meta": {
+    "blockID": "0x00a3e7789bea3d8b13d36728bd355638e97bf9b7c94c62f8f4b6f936ec990ec5",
+    "blockNumber": 10741624,
+    "blockTimestamp": 1637931780,
+    "txID": "0x2ea077b27a3f70d52ccd6d51352b489b2fd058d5b68f299bad072a9aab0d38d8",
+    "txOrigin": "0xe025f7e334c1ee6ca6063b149f3b9ab06b917c35",
+    "clauseIndex": 0
+  }
+}
+```
+
+Counting the number of incoming and outgoing transfers will give you the number of tokens left on each address. To simplify this process, you can use a reducer, which is a function that runs for each entry in a list, reducing the memory usage for larger data sets.
+
+Here's an example of how to use a reducer to build a map of owners and the number of tokens left on each address:
+
+```js
+const ownerCount = transfers.reduce((owners, transfer) => {
+    if (owners[transfer._from] === undefined) {
+      owners[transfer._from] = 0;
+    }
+    if (owners[transfer._to] === undefined) {
+      owners[transfer._to] = 0;
+    }
+
+    owners[transfer._from] -= 1;
+    owners[transfer._to] += 1;
+
+    return owners;
+  }, {});
+```
+
+The `ownerCount` will be a map with addresses as keys and the number of owned tokens as values.
+
+An example Sandbox for this approach is available here:
+https://codesandbox.io/s/nft-owners-using-event-logs-5c8eqo
+
+
+**Advantages for this approach are:**
+
+- Events build a timeline which can provide access to ownerships in the past.
+- Loading additional events in the future can be less resource consuming.
+- It is impossible to hide Token Ids
+
+
+**The Disadvantages are:**
+
+- For actively traded collections the initial data loading can require more resources.
+- The logic to build ownerships is more complex.
+
+
+# By Loop Total Supply
+
+Another way to get the information of token owners is to loop the total supply of a contract and read the owner of each token.
+
+To loop the total supply, you'll use the `totalSupply` function in the contract, which returns the number of tokens in the collection.
+
+With `tokenByIndex(index)` the Token Id for every token in the collection can be obtained.
+
+`ownerOf(tokenId)` allows to access the owner for every known Token Id.
+
+The approach to loop the total supply requires multiple calls, so it may be slower than using transfer events. However, this method is useful when you only need to look up the owner of a small number of tokens.
+
+The ABI for the three functions are:
+
+```json
+{
+  "totalSupply": {
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "totalSupply",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  "tokenByIndex": {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenByIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  "ownerOf": {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ownerOf",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+}
+```
+
+After the `totalSupply()` is known, for every token in the supply the Token Id can be read and the owner address next:
+
+```js
+const {
+    decoded: { totalSupply }
+  } = await connex.thor.account(address).method(ABI.totalSupply).call();
+  
+  const ownerCount = {};
+  for (let index = 0; index < totalSupply; index += 1) {
+    const {
+      decoded: { tokenId }
+    } = await connex.thor
+      .account(address)
+      .method(ABI.tokenByIndex)
+      .call(index);
+    const {
+      decoded: { owner }
+    } = await connex.thor
+      .account(address)
+      .method(ABI.ownerOf)
+      .call(tokenId);
+
+    if (!ownerCount[owner]) {
+      ownerCount[owner] = 0;
+    }
+
+    ownerCount[owner] += 1;
+  }
+```
+
+
+An example Sandbox for this approach is available here:
+https://codesandbox.io/s/nft-owners-using-totalsupply-s87vfx
+
+**Advantages for this approach are:**
+
+- Simple logic with lower probability of errors.
+
+**The Disadvantages are:**
+
+- No historic information available.
+- Big collections will require more resources.
+- Requires a collection to provide the functionality because `tokenByIndex(index)` is not part of the official [VIP-181 requirement](https://github.com/vechain/VIPs/blob/master/vips/VIP-181.md).
+
+# Helper Project
+
+Based on the event approach another example project was built using the [Event.API](https://app.vechain.energy/docs/api/event) of [vechain.energy](https://vechain.energy) which is available on GitHub here:  
+https://github.com/vechain-energy/nft-owner-list
+
+And public website here:
+https://owners.nft.tools.vechain.energy

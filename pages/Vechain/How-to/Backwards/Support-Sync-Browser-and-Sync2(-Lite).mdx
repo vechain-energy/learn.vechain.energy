@@ -1,0 +1,80 @@
+# Support Sync-Browser and Sync2(-Lite)
+
+In the past weeks the same question re-appeared multiple times on how to implement Fee Delegation with Support for the Sync-Browser.
+
+The Sync-Browser provides Sync v1 in `window.connex` and supports signing for manually imported Sync2.
+
+Sync2 is what most modern dApps use now because it works out-of-the-box but bigger or older dApps try to support Sync-Browser.
+
+### Callbacks vs. Strings
+
+The fee delegation behavior has changed and is incompatible.
+
+Sync1 used callbacks:
+
+```javascript
+await window.connex.vendor
+  .sign("tx")
+  .delegate(getSponsorSignature)
+  .comment("increment counter by +1")
+  .request(clauses);
+  
+async function getSponsorSignature({ raw, origin }) {
+  const response = await window.fetch(DELEGATE_URL, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ origin, raw })
+  });
+
+  const { signature } = await response.json();
+  return { signature };
+}
+```
+
+Sync2 simplified it to an url:
+
+```javascript
+ await connex.vendor
+    .sign("tx", clauses)
+    .delegate(DELEGATE_URL)
+    .comment("increment counter by +1")
+    .request();
+```
+
+### Solution
+
+Knowing the difference, a wrapper can switch between both.
+
+Sync1 can be detected by looking at `window.connex` and it identifies with a version number (which Sync2) no longer does:
+
+```javascript
+async function signTransactionWithConnex(clauses) {
+  // detect Sync1 in Sync-Browser
+  if (window.connex && window.connex.version.split(".")[0] === "1") {
+    const { txid } = await window.connex.vendor
+      .sign("tx")
+      .delegate(getSponsorSignature)
+      .comment("increment counter by +1")
+      .request(clauses);
+    return txid;
+  }
+
+  // use default Sync2 behaviour
+  const { txid } = await connex.vendor
+    .sign("tx", clauses)
+    .delegate(DELEGATE_URL)
+    .comment("increment counter by +1")
+    .request();
+
+  return txid;
+}
+```
+
+Don't take this solution as a blueprint, use the information and decide yourself what is best for you.
+
+### Example
+
+[https://codesandbox.io/s/transaction-example-with-sync1-and-sync2-nofsh4?file=/src/App.js:2127-2139](https://codesandbox.io/s/transaction-example-with-sync1-and-sync2-nofsh4?file=/src/App.js:2127-2139)

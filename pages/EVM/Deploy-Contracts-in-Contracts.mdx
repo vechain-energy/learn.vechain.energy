@@ -1,0 +1,79 @@
+# Deploy contracts within contracts
+
+Deploying contracts within contracts allows more flexibility and allows to separate or transfer control in certain situations.
+
+This example shows how to deploy another contract and interact with it.
+
+## Contract to deploy
+
+Based on the OpenZeppelin Wizard a tiny NFT contract looks like this:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract NFT is ERC721, Ownable {
+    constructor() ERC721("NFT", "MTK") {}
+}
+```
+
+To demonstrate dynamic parameters the constructor is adjusted to set name & symbol during deployment:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract NFT is ERC721, Ownable {
+    constructor(string memory name, string memory symbol)
+        ERC721(name, symbol)
+    {}
+}
+```
+
+## The Factory
+
+Deploying new contracts is automatically done when a new instance is created with thenew keyword:
+
+```solidity
+NFT createdContract = new NFT("name", "symbol")
+```
+
+Interaction is immediately possible with the instance. The address is available using the address function:
+
+```solidity
+address contractAddress = address(createdContract);
+```
+
+The complete deployment code is:
+```solidity
+import "./NFT.sol";
+
+contract Factory {
+    function createContract(string memory name, string memory symbol)
+        public
+        returns (address)
+    {
+            // deploy new contract
+        NFT createdContract = new NFT(name, symbol);
+        
+        // get contract address for further use
+        address contractAddress = address(createdContract);
+
+                // interact with the new contract
+        createdContract.transferOwnership(msg.sender);
+
+        return contractAddress;
+    }
+}
+```
+
+## Example Project
+
+The full working example with more details is available on GitLab:
+https://gitlab.com/vechain.energy/examples/contract-in-contract/-/tree/master/

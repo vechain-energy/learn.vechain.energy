@@ -1,5 +1,0 @@
-# Frequently Passed Problems
-
-### `thor-requests` on Windows does not work
-
-* helpful link: [https://mirei83.medium.com/howto-vechain-blockchain-part-1-8eba9b9e2874](https://mirei83.medium.com/howto-vechain-blockchain-part-1-8eba9b9e2874)

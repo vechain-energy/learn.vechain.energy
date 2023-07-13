@@ -1,0 +1,98 @@
+# How to Filter Multiple Events with Connex
+
+Connex is a powerful tool for developers to interact with the VeChainThor blockchain. When filtering events from a single contract, the Account Visitor can be used. However, in some cases, multiple events or sources need to be filtered. In this blog post, we'll explore how to use `connex.thor.filter` to execute multiple filters in a single call.
+
+# Preparation
+
+Before we dive into the code, let's set up the necessary imports and example ABI:
+
+```ts
+import Connex from "@vechain/connex";
+import { abi } from "thor-devkit";
+
+const connex = new Connex({
+  node: "https://mainnet.veblocks.net",
+  network: "main"
+});
+
+const ABI = {
+    "anonymous": false,
+    "inputs": [
+        {
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+        },
+        {
+            "indexed": true,
+            "name": "_to",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }
+    ],
+    "name": "Transfer",
+    "type": "event"
+}
+```
+
+# Encoding the Request
+
+To create an event instance, we'll use the `abi` package:
+
+```ts
+const transferEvent = new abi.Event(ABI)
+```
+
+The most important methods are `encode()` and `decode()`, as well the  `signature` attribute.
+
+## encode() Parameters
+
+The `encode()` method maps the object to the ABI input arguments, returning a list of topics that can be used for filtering.
+
+**Note:** Only **indexed** arguments can be filtered.
+
+```ts
+const topics = transferEvent.encode({ _to: "0x04Ad3f13050cc766169433062BcDbB367B616986" })
+```
+
+## filter()
+
+The returned topics can be used to define the filter:
+
+```ts
+const events = await connex.thor
+	.filter("event", [
+	  {
+	    address: "0x0000000000000000000000000000456E65726779",
+	    topic0: topics[0] || undefined,
+	    topic1: topics[1] || undefined,
+	    topic2: topics[2] || undefined,
+	    topic3: topics[3] || undefined,
+	    topic4: topics[4] || undefined
+	  }
+	])
+	.apply(0, 20);
+```
+
+Notably, we can exclude the `address` parameter to apply the search on all contracts.
+
+# Decoding the Request
+
+The decoding process needs to be manually handled for every event returned. `decode()` expects the event data and the `topics` as parameters because the topics contain the indexed values, while `data` contains the rest. Both need to be decoded separately and then combined to provide the full decoded information:
+
+```ts
+const logs = events.map(event => {
+  return {
+    ...event,
+    decoded: transferEvent.decode(event.data, event.topics)
+  };
+})
+```
+
+# Conclusion
+
+Using `connex.thor.filter`, we can filter events from multiple sources or multiple events in a single call. By manually handling the encoding and decoding process with the help of `thor-devkit`, we can retrieve the necessary information from the blockchain. Connex provides a powerful toolset for to interact with the vechain, and mastering it can greatly enhance your dApp development experience.

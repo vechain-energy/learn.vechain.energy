@@ -1,0 +1,66 @@
+# How to Implement Base64 Outputs in Contracts
+
+Storing information off-chain using a link to a metadata file has been the common practice for NFTs. However, there is a growing trend towards storing all information purely on-chain, which has led to the idea of providing data links that contain the data in it.
+
+In this article, we will discuss how to build a JSON data URL for a tokenURI using base64 encoding in Solidity contracts.
+
+
+## Base64 Encoding with OpenZeppelin Utilities
+
+[OpenZeppelin](https://docs.openzeppelin.com/contracts/4.x/utilities#base64) provides the tools required to implement base64 encoding in a Solidity contract in an easy way.
+
+To use the base64 encoding utility, import `"@openzeppelin/contracts/utils/Base64.sol"` and then call `Base64.encode(string)` to build the base64 string.
+
+## Building the JSON Output
+
+A data URL starts with the data: schema, followed by the mime type and the encoding of the data. This prefix sums up to `data:application/json;base64,`.
+
+To build the JSON output, leverage the `abi.encodePacked` function to concatenate strings:
+
+```solidity
+abi.encodePacked(
+    "data:application/json;base64,",
+    Base64.encode(dataURI)
+)
+```
+
+Here, `dataURI` is the encoded JSON data that we want to include in the URL.
+
+
+## Sample Snippet
+
+A complete example of a Solidity contract function that builds a JSON output using base64 encoding is shown below:
+
+```solidity
+function tokenURI(uint256 tokenId)
+    public
+    view
+    override(ERC721)
+    returns (string memory)
+{
+    bytes memory dataURI = abi.encodePacked(
+        "{",
+        '"mintedFor": "',
+        Strings.toHexString(uint256(uint160(mintedFor[tokenId])), 20),
+        '",',
+        '"attribute": "value"',
+        "}"
+    );
+
+    return
+        string(
+            abi.encodePacked(
+                "data:application/json;base64,",
+                Base64.encode(dataURI)
+            )
+        );
+}
+```
+
+In this example, `mintedFor` was encoded with its value as a hexadecimal string. Also a sample attribute with a value of "value" was included in the JSON output.
+
+## Example Project
+
+For a complete example of a Solidity contract that uses base64 encoding to build a JSON data URL, you can check out the [example project on GitLab](https://gitlab.com/vechain.energy/examples/contract-json-base64).
+
+By implementing base64 encoding in your Solidity contracts, you can provide all relevant data on-chain. One of the benefits of using a standard format like JSON and data URLs is that it can be easily handled by many applications. Moreover, using on-chain storage means that no other service needs to be maintained for storage, and the data will be available forever, as long as the blockchain exists.

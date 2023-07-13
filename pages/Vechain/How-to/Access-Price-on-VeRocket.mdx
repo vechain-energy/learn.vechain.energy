@@ -1,0 +1,134 @@
+# How to Access (Historic) $VET Price on VeRocket Using the Call.API
+
+VeRocket, a Uniswap v2 compatible exchange, provides on-chain swaps for different tokens. This allows you to access price information on-chain and deliver it through a public API without connecting to centralized services like Coingecko. In this example, we'll use the [Call.API](https://learn.vechain.energy/vechain.energy/read-data-from-smart-contracts) to load the current VET price (measured in VeUSD) and the price from a specific point in the past.
+
+
+# ABI
+
+Uniswap defines [`getAmountOut`](https://docs.uniswap.org/contracts/v2/reference/smart-contracts/router-02#getamountout) that can be used to get the VeUSD value from a swap of a single vVET. The returned value will be the USD value of VET.
+
+The function is defined as this:
+
+```sol
+function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts);
+```
+
+- The input is the contract's amount, respecting its decimals.
+- The address list represents the routing of the swap; for this example, the path will be VET to VeUSD.
+- The output is the result for each step of the path.
+
+# Parameters
+
+The input parameters are defined as:
+
+1. amountIn = 1000000000000000000\
+    This equals 1 VET, as the contract has [18 decimals 1 + 18 x 0](https://api.vechain.energy/v1/call/main/0x45429A2255e7248e57fce99E7239aED3f84B7a53/decimals()%20%20returns%20(uint256%20decimals)).
+2. path[0] = 0x45429A2255e7248e57fce99E7239aED3f84B7a53\
+    Input: the Wrapped VET contract.
+3. path[1] = 0x4E17357053dA4b473e2daa2c65C2c949545724b8\
+    Output: the VeUSD contract.
+
+
+# Output
+
+The result will be a list of values, currently:
+
+```json
+[
+   "1000000000000000000",
+   "24135"
+]
+```
+
+
+The	[decimals of the VeUSD contract are 6](https://api.vechain.energy/v1/call/main/0x4E17357053dA4b473e2daa2c65C2c949545724b8/decimals()%20%20returns%20(uint256%20decimals)) which requires the value `24135` to be divided by a 1 + 6 x 0:
+
+```
+24135 / 1000000 = 0.024135
+```
+
+That's the current value of VET in USD as of today (2023-04-20).
+
+# API Access
+
+## GET
+
+The GET variant is easy to share and can be easily implemented into frontend web applications. It is harder to read:
+
+Readable version:
+
+```md
+https://api.vechain.energy/v1/call/main/0x576da7124c7bb65a692d95848276367e5a844d95/getAmountsOut (uint256 1000000000000000000, address[] 0x45429A2255e7248e57fce99E7239aED3f84B7a53|0x4E17357053dA4b473e2daa2c65C2c949545724b8) returns (uint256[] amounts)
+```
+
+URL encoded:  
+https://api.vechain.energy/v1/call/main/0x576da7124c7bb65a692d95848276367e5a844d95/getAmountsOut%20(uint256%201000000000000000000,%20address[]%200x45429A2255e7248e57fce99E7239aED3f84B7a53%7C0x4E17357053dA4b473e2daa2c65C2c949545724b8)%20returns%20(uint256[]%20amounts)
+
+## POST
+
+The POST variant is more verbose and easier to read. It should be used in backends:
+
+```shell
+curl -XPOST https://api.vechain.energy/v1/call/main -d '
+{
+  "clauses": [ 
+  {
+    "to": "0x576da7124c7bb65a692d95848276367e5a844d95",
+    "abi": {
+      "name": "getAmountsOut",
+      "inputs": [
+          {
+              "internalType": "uint256",
+              "name": "amountIn",
+              "type": "uint256"
+          },
+          {
+              "internalType": "address[]",
+              "name": "path",
+              "type": "address[]"
+          }
+      ],
+      "outputs": [
+          {
+              "internalType": "uint256[]",
+              "name": "amounts",
+              "type": "uint256[]"
+          }
+      ],
+      "type": "function"
+    },
+    "args": [
+      "1000000000000000000",
+      [
+        "0x45429A2255e7248e57fce99E7239aED3f84B7a53",
+        "0x4E17357053dA4b473e2daa2c65C2c949545724b8"
+      ]
+    ]
+  }
+  ]
+}
+'
+```
+
+# Historical Data
+
+## Historical Data
+
+`revision` can be passed as a parameter to retrieve the information for a specific block number (or ID) in the past.
+
+[For example, Block 11,824,314 was forged at 2022-04-01 and will reference the information from that time:](https://api.vechain.energy/v1/call/main/0x576da7124c7bb65a692d95848276367e5a844d95/getAmountsOut%20(uint256%201000000000000000000,%20address[]%200x45429A2255e7248e57fce99E7239aED3f84B7a53%7C0x4E17357053dA4b473e2daa2c65C2c949545724b8)%20returns%20(uint256[]%20amounts)?revision=11824314)
+
+```json
+[
+  "1000000000000000000",
+  "78358"
+]
+```
+
+That's $0,078358 for $VET at that time.
+
+# Conclusion
+
+Using the [Call.API](https://app.vechain.energy/docs/api/call) to access information from contracts can remove the need for custom backends. It opens the possibility to build a public API based on any kind of contract.
+
+In this article's example, an API to access current and historical price information for tokens was demonstrated.

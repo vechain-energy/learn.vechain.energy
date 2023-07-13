@@ -1,0 +1,46 @@
+# How to implement time based decisions into a contract
+
+Contracts live in their own world clocked by block times. Sometimes the real world still requires tribute by using human clocks and timestamps.
+
+Examples can be a mint start at a specific time or a functionality available during a defined timeframe.
+
+Calculating a timestamp based on the block numbers can be a solution but block times can vary depending on network usage or even outages.
+
+## Global `block`
+
+Within Solidity access to the human clock is available using the global variable `block`.
+
+`block.timestamp` contains the timestamp of the current block.
+
+Here is an example with a simple countdown that shows the seconds left until the defined countdown:
+
+```solidity
+uint256 public timestamp;
+uint256 public changedAt;
+
+function setCountdownTo(uint256 timestamp_) public {
+    timestamp = timestamp_;
+    changedAt = block.timestamp;
+}
+
+function countdown() public view returns (uint256 secondsLeft) {
+    secondsLeft = (timestamp - block.timestamp);
+}
+```
+
+## Time calculation
+
+Time calculations are made additional easy using time units that allow a human readable conversion.
+
+To output the countdown in minutes or days, it can be divided:
+
+```solidity
+minutesLeft = (timestamp - block.timestamp) / 1 minutes;
+daysLeft = (timestamp - block.timestamp) / 1 days;
+hoursLeft = (timestamp - block.timestamp) / 1 hours;
+weeksLeft = (timestamp - block.timestamp) / 1 weeks;
+yearsLeft = (timestamp - block.timestamp) / 1 years;
+```
+
+Read more at the Solidity docs: https://docs.soliditylang.org/en/v0.4.21/units-and-global-variables.html#time-units
+The example contract is available here: https://gitlab.com/vechain.energy/examples/contract-timer

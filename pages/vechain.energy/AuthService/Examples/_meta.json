@@ -1,0 +1,15 @@
+{
+  "Next-Auth": "NextAuth.js",
+  "Auth0": "Auth0",
+  "WordPress": "WordPress",
+  "Static HTML": {
+    "title": "Static HTML",
+    "href": "https://codesandbox.io/embed/auth-service-test-page-25v0ev?fontsize=14&hidenavigation=1&theme=dark",
+    "newWindow": true
+  },
+  "Discord.js": {
+    "title": "Discord.js",
+    "href": "https://github.com/vechain-energy/discord.vechain.energy/blob/main/commands/auth.connect.js",
+    "newWindow": true
+  }
+}

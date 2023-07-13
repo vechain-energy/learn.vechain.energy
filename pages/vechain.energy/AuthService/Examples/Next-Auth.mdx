@@ -1,0 +1,28 @@
+# NextAuth.js
+
+Based on [OAuth Providers](https://next-auth.js.org/configuration/providers/oauth).
+
+```js copy
+export const authOptions: NextAuthOptions = {
+  providers: [
+    {
+      id: "connex",
+      name: "Vechain",
+      type: "oauth",
+      wellKnown: "https://auth.api.vechain.energy/.well-known/openid-configuration",
+      idToken: true,
+      authorization: { params: { scope: "code openid profile" } },
+      clientId: 'vechain.energy',
+      clientSecret: 'builder',
+      profile(profile: { sub: string, name: string, address: string }): { id: string, name: string, email: string, address: string } {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          address: String(profile.address).toLowerCase(),
+          email: `${String(profile.address).toLowerCase()}@vechain.energy`
+        }
+      },
+    }
+};
+
+```

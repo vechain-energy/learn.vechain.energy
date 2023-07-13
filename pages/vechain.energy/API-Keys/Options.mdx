@@ -1,0 +1,21 @@
+# Options
+
+## Permission
+
+By default, all transactions initiated by an API key are restricted to the Fee Delegation Configuration. Only sponsored transactions can be submitted to the blockchain.
+
+The restriction can be lifted to allow the API key to interact with everyone.
+
+![](./apikey-permission.gif)
+
+
+## Test before Submission
+
+By passing the query parameter `?test=true`, you can simulate the transaction before broadcasting it. If the simulation indicates that the transaction will revert, it will not be broadcast.
+
+Simulations help to save gas fees for potentially failing transactions.
+
+
+## Enable / Disable
+
+Disabling an API-Key takes effect immediately. It can be re-enabled any time.

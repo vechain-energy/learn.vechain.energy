@@ -1,0 +1,71 @@
+# Setup Scheduler
+
+<details>
+ <summary>**optional: Create Address Book Entry**</summary>
+ 
+## Create Address Book Entry
+The contracts and functions can be organized in the Address Book. Select network, address and enter ABI to prevent re-entering the same information.
+
+This example uses a `Counter` contract deployed on the Vechain TestNet.
+
+Address:
+```md copy
+0x8384738c995d49c5b692560ae688fc8b51af1059
+```
+
+ABI:
+
+```json copy
+[
+  {
+    "inputs": [],
+    "name": "counter",
+    "outputs": [
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "increment",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
+```
+
+![](./scheduler-addressbook.gif)
+</details>
+
+## Create Scheduler
+
+A scheduler consist of three elements.
+
+![](./scheduler-create.gif)
+
+### Contract
+
+The address of the contract and the ABI are used in combination to build a new transaction. Input for functions will automatically be required if the ABI lists them.
+
+### Interval
+
+The interval is in a crontab format with visual support to configure it without technical understanding.
+
+The next runs are listed to confirm the next executions.
+
+## Simulation
+
+A simulation tests the transaction for a possible revert. If the contract will revert, the next transaction will be skipped. 
+
+Simulations enable calling functions only when certain requirements are in place, without wasting gas fees with reverted transactions.
+
+## Logs
+
+In the Dashboard the combined information of the Scheduler Execution, Fee Delegation and the Transaction provides instant insight of each transaction.
+
+The Execution Logs in the Schedulers-Section provide details about each execution.
+
+![](./scheduler-logs.gif)
+

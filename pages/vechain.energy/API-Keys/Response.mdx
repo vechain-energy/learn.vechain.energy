@@ -1,0 +1,19 @@
+# Transaction Response
+
+A successful response contains the transaction ID and a link to the Node API, where the transaction status can be verified.
+
+```json
+{
+	"id": "0x6b7174abe28dbc2a8671e221201055e26806efff59873163e11f55a7207ad576",
+	"url": "https://node-testnet.vechain.energy/transactions/0x6b7174abe28dbc2a8671e221201055e26806efff59873163e11f55a7207ad576?pending=true"
+}
+```
+
+The transaction status will contain a `meta` field. If the `meta` field in the response is null, then the transaction is pending. If the transaction was completed, the `meta` field will contain information about the block containing the transaction.
+
+**Good practice would be to:**
+
+1. extract `url` from response
+2. load the `url` to verify transaction exists
+3. if `meta` is `null`, sleep for 10 seconds and try again
+4. if `meta` is not `null`, handle the transaction result

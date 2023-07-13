@@ -1,0 +1,59 @@
+# Types of Webhooks
+
+Webhooks can automatically send a request to a particular URL when a specific event happens on the blockchain. With the help of webhooks, tasks can be automated or blockchain activity can be integrated with other services.
+
+## Contract Events
+
+A smart contract that calls `emit` and logs an event to the Blockchain triggers this event.
+
+- The listener can be applied to all contracts or a defined list of addresses.
+- Available filters are determined by the event definition provided. Every argument can be used as a filter. Number values can be converted using `formatEther()` and bytes optionally converted into strings.
+- Data available for passing to a HTTP-Endpoint are the derived arguments from the event definition. Additionally the function call for the contract can be passed, if an ABI is provided or the ABI is publicly known.
+- Generic block information can be passed with the transaction id, origin, clause index, block id and number and timestamp.
+
+**Possible use cases are:**
+
+- Oracles that respond to data requests (HTTP Request, Random Number, etc.)
+- Indexer to provide improved searchable databases
+- Notifications on certain events, for example connect IFTTT to send an email when a new NFT is minted or offer received
+
+## VET Transfer
+
+A transfer of VET between wallets triggers this event.
+
+- Available filters are: `from`, `to` and `amount`
+- `amount` can optionally be converted using `formatEther()`
+- Data available for passing to a HTTP-Endpoint are: `from`, `to`, `amount`
+   - Generic block data and an optionally present transaction call of a smart contract are available the same as for regular smart contract events.
+
+
+**Possible use cases are:**
+
+- Notifications on transfers, for example connecting IFTTT to send an email notification when Multi-Signature wallet activity is detected
+- Analytics collectors to build statistical information
+
+## Raw Transaction
+
+A transaction that was included into a block triggers this event.
+
+- Available filters are: `origin`, `delegator`, `gasPayer`, `reverted`, `paid`, `expiration`, `gasPriceCoef`, `gas`, `gasUsed`, `reward`, `nonce`, `dependsOn`, `size`
+- `paid` (VTHO gas fee) and `reward` (VTHO reward to AM) can optionally be converted using `formatEther()`
+- Data available for passing to a HTTP-Endpoint are: `origin`, `delegator`, `gasPayer`, `reverted`, `paid`, `expiration`, `gasPriceCoef`, `gas`, `gasUsed`, `reward`, `nonce`, `dependsOn`, `size`
+   - Generic block data of a smart contract are available as well.
+
+**Possible use cases are:**
+
+- Analytics collectors to build charts or queryable information
+
+## Raw Clause
+
+A clause embedded within a transaction that was included into a block triggers this event.
+
+- Available filters are: `origin`, `delegator`, `gasPayer`, `reverted`, `to`, `value`, `data`
+- `value` (VET transferred) and `paid` (VTHO gas fee) can optionally be converted using `formatEther()`
+- Data available for passing to a HTTP-Endpoint are: `origin`, `delegator`, `gasPayer`, `reverted`, `to`, `value`, `data`
+   - Generic block data and an optionally present transaction call of a smart contract are available the same as for regular smart contract events.
+
+**Possible use cases are:**
+
+- Analytics collectors to build charts or queryable information

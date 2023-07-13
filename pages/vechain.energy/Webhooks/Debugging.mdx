@@ -1,0 +1,26 @@
+# Debugging
+
+## Test / Simulating Transactions
+
+Simulation allows to verify what happened with a transaction or how the current configuration will be applied to a transaction.
+
+By default, the simulation shows the actions it will perform. Additionally, it is possible to send an HTTP request during the simulation.
+
+The example data can be replaced with the simulation result, if it is successful.
+
+![](./webhook-simulation-2.gif)
+
+## Endpoint failures
+
+If the backend is unreachable or throws an error code, it will be logged as error and can be filtered in the logs.
+
+Analyzing the response headers and body can help identify the cause of the failure.
+
+![](./webhook-log-filter.gif)
+
+
+## Function failure
+
+If the Webhook Function throws an error, the response status will be `503` and the error message is available in the logs.
+
+![](./webhook-function-log.gif)

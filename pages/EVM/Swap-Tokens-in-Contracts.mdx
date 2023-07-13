@@ -1,0 +1,192 @@
+# How to swap tokens in a contract
+
+A DEX is a collection of smart contracts on the blockchain. Interaction with a smart contract is possible when the language or interface is known. VeChains major DEX (VeRocket and Vexchange) use the well documented [Uniswap protocol](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/trading-from-a-smart-contract).
+
+This article contains an example using the Uniswap definition to swap a VIP-180 (ERC-20) token to VET on VeRocket.
+
+The first version swaps a contracts balance. A second version a users balance directly from their wallet.
+
+## The Exchange-Address
+
+To communicate with someone an address is required. The smart contracts of VeRocket are documented in their public GitHub repository:  
+https://github.com/VeRocket/uni-v2
+
+The Router is the required address. It also states "uni-v2" in the README which means it is using the Uniswap v2 definition.
+
+## The Interface
+
+The interface is like a language a list of all available functionality and how to use it.
+
+The official Uniswap interface is available at Uniswap:  
+https://docs.uniswap.org/protocol/V2/reference/smart-contracts/router-02
+
+The interface in a `.sol` file (https://gitlab.com/vechain.energy/examples/contract-exchange/-/blob/main/contracts/IUniswapV2Router02.sol) can be imported and then provides the ability to use other contracts like they reside in the projects code:
+
+```solidity
+IUniswapV2Router02(routerAddress).<Func>(...Args);
+```
+
+## The Swap
+
+[Uniswap docs already contain an example trading within contracts.](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/trading-from-a-smart-contract) It boils down to two lines commands.
+
+### #1 approve the exchange access to a certain amount of tokens
+
+```solidity
+token.approve(address(exchangeRouter), amountIn);
+```
+
+### #2 execute a swap for all sent tokens
+
+```solidity
+IUniswapV2Router02(exchangeRouter).swapExactTokensForETH(
+    amountIn,
+    amountOutMin,
+    path,
+    address(this),
+    deadline
+);
+```
+
+**the parameters are the following:**
+
+```solidity
+// balance to swap
+// this uses the balance of the contract
+uint256 amountIn = vthoToken.balanceOf(address(this));
+
+// the expected output in VET
+// can be calculated externally or calculated in a simple way
+// here it expects a rate of 20 VTHO = 1 VET
+uint256 amountOutMin = amountIn / 20; 
+
+// path of the token swap
+// first step = VTHO in
+// second step = VET (WETH) out
+address[] memory path = new address[](2);
+path[0] = address(token);
+path[1] = IUniswapV2Router02(exchangeRouter).WETH();
+
+// swap deadline, instantly in this block or revert
+uint256 deadline = block.timestamp;
+```
+
+_Using "Wrapped ETH" or "ETH" is misleading in the code but correct, it represents the native token of the network which is VET on VeChain._
+
+## Putting it together
+
+This sample function uses two parameters to support all VIP-180 tokens and protect the exchange-rate for slippage.
+
+All balance of the token is swapped, nothing is left behind. The swap is protected with minimum exchange-rate (10 for example is 1:10):
+
+```solidity
+function swap(IERC20Upgradeable token, uint256 minRate) public {
+    uint256 amountIn = token.balanceOf(address(this));
+    uint256 amountOutMin = amountIn / minRate;
+
+    require(
+        token.approve(address(exchangeRouter), amountIn),
+        "approve failed."
+    );
+
+    address[] memory path = new address[](2);
+    path[0] = address(token);
+    path[1] = IUniswapV2Router02(exchangeRouter).WETH();
+    IUniswapV2Router02(exchangeRouter).swapExactTokensForETH(
+        amountIn,
+        amountOutMin,
+        path,
+        address(this),
+        block.timestamp
+    );
+}
+```
+
+The working example is found here:  
+https://gitlab.com/vechain.energy/examples/contract-exchange/-/blob/main/contracts/Exchange.sol#L56-76
+
+## Removing trust from the contract
+
+The inspiration for this example was an automatic VTHO to VET swap. This is now possible if all VET is stored in the contract and swapped regulary. But storing all the VET in a contract would be too much of a risk and essentially lock it.
+
+The VIP-180 and ERC-20 standard contain an approval function. Approval allow a third party to access a certain amount of tokens directly without additional interaction. The swap-function makes use of the approval to allow the exchange access to the source token.
+
+The same approval can be given to the demo contract. Access to all VTHO to automatically swap them whenever needed.
+
+Three things are required to add that functionality:
+1. The source wallet needs to approve spending its VTHO. Approvals are set in the token contract (VTHO in this case). Here is an example web app that can be used for this: https://codesandbox.io/s/approve-access-to-all-vtho-tokens-q9p49y
+2. If the contract gets approval to spend VTHO, the contract needs to send the VTHO to itself first
+3. Instead of sending the resulting VET to the contract, the exchange is instructed to send the VET directly to the user
+
+This is a modified function, comments in mark the changes:
+
+```solidity
+// the swapping source wallet is given
+// function call will fail if no prior token approval exists
+function swapForWallet(address account, IERC20Upgradeable token, uint256 minRate) public onlyRole(ADMIN_ROLE) {
+  require(exchangeRouter != address(0), "exchangeRouter needs to be set");
+  uint256 amountIn = token.balanceOf(account);
+  uint256 amountOutMin = amountIn / minRate;
+  // send token from wallet to contract first
+  SafeERC20Upgradeable.safeTransferFrom(token, account, address(this), amountIn);
+  require(
+    token.approve(address(exchangeRouter), amountIn),
+    "approve failed."
+  );
+  address[] memory path = new address[](2);
+  path[0] = address(token);
+  path[1] = IUniswapV2Router02(exchangeRouter).WETH();
+  IUniswapV2Router02(exchangeRouter).swapExactTokensForETH(
+    amountIn,
+    amountOutMin,
+    path,
+    // send the swapped VET back to the user wallet
+    account,
+    block.timestamp
+  );
+}
+```
+
+The functions code is available here:
+https://gitlab.com/vechain.energy/examples/contract-exchange/-/blob/main/contracts/Exchange.sol#L78-100
+
+
+## Run it regulary
+
+vechain.energy offers a Transaction API that signs and broadcasts transactions using a REST-API. In combination with an IFTTT Applet it can run the swap functionality automatically at any given interval:
+
+1. Create a Sponsorship on vechain.energy
+2. Deposit initial VTHO for transactions
+3. Add an API-Key and allow it to interact with everyone
+4. Grant your API-Key an ADMIN_ROLE on your contract
+5. Sign up on IFTTT with Date & Time that trigger WebHooks
+
+Example: https://gitlab.com/vechain.energy/examples/contract-exchange/-/tree/main#bonus
+
+Or do a curl request in a cronjob in your local shell:
+
+```shell
+$ curl -X POST https://sponsor-testnet.vechain.energy/by/115/transaction \
+  -H "X-API-Key: gqxao258sg.65fdb6ea8d8f634080fb65322f3170fed920b7dc4adc3f805ec023de07b27282" \
+  -H "Content-Type: application/json" \
+  -d '{"clauses": [ "0xA1F0247553D8DAAE8F943F6461816d82c4535c82.swapForWallet(address 0x2F3da21ad07657ad6608D251e8F3D3FE7E57EA0E, address 0x0000000000000000000000000000456e65726779, uint256 20)" ]}'
+{"id":"0x18f21bebc1f238f475f102834c79035bae5a3ba026fab83af1387925c12c2236","url":"https://vethor-node-test.vechaindev.com/transactions/0x18f21bebc1f238f475f102834c79035bae5a3ba026fab83af1387925c12c2236?pending=true"}
+```
+
+Or use the vechain.energy [Scheduler](/vechain.energy/Scheduler) to configure a cronjob on the Blockchain.
+
+## Notes
+
+The example shows the basic technique to interact with other contracts using known interfaces. Using token approvals a wallets token management is tapped and put into the hands of a smart contract.
+
+The original inspiration for the example was to swap VTHO to VET on a regular basis. Similar swaps can be applied for other tokens earned on the network.
+
+The ability to swap tokens directly on the network also opens the ability to receive payments in a single token or automatically purchase VTHO for gas fee's when needed.
+
+For example payments can be defined in USD and any token can be swapped to VeUSD `usingswapTokensForExactTokens`.
+
+## Links
+- [Example swap project](https://gitlab.com/vechain.energy/examples/contract-exchange/-/tree/main)
+- [Uniswap: Implement a swap in Smart Contract](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/trading-from-a-smart-contract)
+- [Uniswap: Smart Contract Integration](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/quick-start)
+- [ERC-20 definition](https://eips.ethereum.org/EIPS/eip-20#methods) and [VIP-180 definition](https://github.com/vechain/VIPs/blob/master/vips/VIP-180.md)
