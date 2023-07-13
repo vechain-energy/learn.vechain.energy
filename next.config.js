@@ -16,7 +16,16 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: true,
   assetPrefix,
-  basePath: assetPrefix
+  basePath: assetPrefix,
+  async redirects() {
+    return [
+      {
+        source: '/vechain.energy/identify-users',
+        destination: '/vechain.energy/AuthService',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 module.exports = {
