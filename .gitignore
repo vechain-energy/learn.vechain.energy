@@ -1,9 +1,10 @@
 .next
 node_modules
 .DS_Store
+out
 
-
-# yarn 2
+# yarn 2 – https://stackoverflow.com/a/58550620
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+.pnp.*
