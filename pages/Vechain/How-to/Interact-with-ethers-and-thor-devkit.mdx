@@ -1,0 +1,203 @@
+# How to Interact with Vechain without Connex
+
+> Connex is the standard interface to connect dApps with VeChain blockchain and users. Aiming to help developers building decentralized applications.
+
+[Connex](https://docs.vechain.org/connex/api.html) is an excellent tool for interacting with VeChain, but it is limited to certain environments, and sometimes more flexibility is needed.
+
+In this article, we will demonstrate how to interact with Vechain using [ethers](https://www.npmjs.com/package/ethers) and the [thor-devkit](https://www.npmjs.com/package/thor-devkit).
+
+## Environment
+
+For this example, we will set up a NodeJS script that uses an existing contract on the TestNet to call a contract function.
+
+### Preparation
+
+Before we begin, let's take note of the following details:
+
+- Contract: [`0x8384738C995D49C5b692560ae688fc8b51af1059`](https://explore-testnet.vechain.org/accounts/0x8384738c995d49c5b692560ae688fc8b51af1059)
+- Sponsorship-URL: `https://sponsor-testnet.vechain.energy/by/90`
+- Node-URL: `https://node-testnet.vechain.energy`
+- ABI:
+
+```json
+[
+  {
+    "inputs": [],
+    "name": "counter",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "increment",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
+```
+
+
+## Project Setup / Dependencies
+
+First, let's set up the project and install the necessary dependencies using yarn:
+
+```shell
+yarn init -y
+yarn add ethers thor-devkit bent
+```
+
+- `ethers` is used for building the binary instructions for chain communication.
+- `thor-devkit` is used for Vechain-specific transaction wrapping and signing.
+- `bent` is used as a simple fetch alternative.
+
+To simplify HTTP interactions, bent is used to provide `get` and `post` functions for a Vechain Node and a function to fetch data from the vechain.energy delegation service:
+
+```js
+const get = bent('GET', 'https://node-testnet.vechain.energy', 'json')
+const post = bent('POST', 'https://node-testnet.vechain.energy', 'json')
+const getSponsorship = bent('POST', 'https://sponsor-testnet.vechain.energy', 'json')
+```
+
+
+## Build Transaction Call
+
+Building the contract call in bytecode is provided by `ethers` and its `Interfaces`:
+
+```js
+const Counter = new ethers.Interface(abi)
+const clauses = [{
+  to: address,
+  value: '0x0',
+  data: Counter.encodeFunctionData("increment", [])
+}]
+```
+
+Using interfaces, an ABI or function headers (signatures) can be used to generate an easy-to-use interaction interface.
+
+If the function accepts arguments, they can be passed in the array of the `encodingFunctionData`.
+
+Read more about it in the docs:  
+https://docs.ethers.org/v6/api/abi/#interfaces
+
+The resulting data is stored in a list with clauses, which will be wrapped by a transaction in the next step.
+
+## Generate Vechain Transaction
+
+A transaction is required to submit the clauses and call the contracts. A transaction can be built with `thor-devkit` and requires chain related information:
+
+```js
+const { Transaction, secp256k1 } = require('thor-devkit')
+
+const bestBlock = await get('/blocks/best')
+const genesisBlock = await get('/blocks/0')
+
+const transaction = new Transaction({
+	chainTag: Number.parseInt(genesisBlock.id.slice(-2), 16),
+	blockRef: bestBlock.id.slice(0, 18),
+	expiration: 32,
+	clauses,
+	gas: bestBlock.gasLimit,
+	gasPriceCoef: 0,
+	dependsOn: null,
+	nonce: Date.now(),
+	reserved: {
+	  features: 1
+	}
+})
+
+```
+
+Building the transaction has dependencies:
+
+1. `chainTag` is a reference to the last byte of the genesis block (block #0) to ensure the transaction can not be re-used on different chains.
+2. `blockRef` points to the point on the chain where the transaction relies on. It must be a valid one and the `expiration` will be based on that.
+3. `gas` is in the example set to the maximum allowed in the latest block
+4. `nonce` needs to be unique in the transaction pool but can otherwise be a tiny number to save gas fees.
+5. `reserved` activates fee delegation, which can be left out if unwanted
+
+# Bonus: Simulate Transaction
+
+The results of the transaction can be simulated by posting the data to a node at `/accounts/*`.
+
+The gas willing to be paid, optionally the caller that will send the transaction can be provided to get a complete result of what will happen.
+
+A list is returned with the transfers and events that will happen on each clause. In case of an error `reverted` is returned as `true` and data can contain the hex-encoded revert-message of the involved contract.
+
+```js
+const tests = await post('/accounts/*', {
+  clauses: transaction.body.clauses,
+  caller: wallet.address,
+  gas: transaction.body.gas
+})
+
+for (const test of tests) {
+  if (test.reverted) {
+
+    const revertReason = test.data.length > 10 ? ethers.AbiCoder.defaultAbiCoder().decode(['string'], `0x${test.data.slice(10)}`) : test.vmError
+    throw new Error(revertReason)
+  }
+}
+```
+
+
+## Get Fee Delegation Signature
+
+With fee delegation the transaction requires a signature from the gas payee.
+
+The transaction can be received from a Fee Delegation Service by sending the transaction origin and the hex encoded transaction. As a result the hex-signature is returned and needs to be converted into a buffer:
+
+```js
+const { signature } = await getSponsorship('/by/90', { origin: wallet.address, raw: `0x${transaction.encode().toString('hex')}` })
+const sponsorSignature = Buffer.from(signature.substr(2), 'hex')
+```
+
+Details about the inner workings of the service is described in VIP-201:  
+https://github.com/vechain/VIPs/blob/master/vips/VIP-201.md
+
+
+# Sign Transaction
+
+`secp256k1` is used to create a signature for a hash of the transaction.
+
+Without Fee Delegation it is a two liner:
+
+```js
+const signingHash = transaction.signingHash()
+transaction.signature = secp256k1.sign(signingHash, Buffer.from(wallet.privateKey.slice(2), 'hex'))
+```
+
+With Fee Delegation, the signature of the gas payee is appended to the transaction signature:
+
+```js
+const signingHash = transaction.signingHash()
+const originSignature = secp256k1.sign(signingHash, Buffer.from(wallet.privateKey.slice(2), 'hex'))
+transaction.signature = Buffer.concat([originSignature, sponsorSignature])
+```
+
+## Submit Transaction
+
+The built and signed transaction is submitted to the network with a POST to `/transactions`. This completes the transaction building:
+
+```js
+const rawTransaction = `0x${transaction.encode().toString('hex')}`
+const { id } = await post('/transactions', { raw: rawTransaction })
+```
+
+Returned is a JSON with the transaction id for further tracking.
+
+The id can be used to get details about the transaction status and its results.
+
+## Links
+
+- Full example snippet:  
+  https://github.com/vechain-energy/examples-vechain-ethers-thor-devkit/blob/main/index.js
+- [ethers](https://www.npmjs.com/package/ethers)
+- [thor-devkit](https://www.npmjs.com/package/thor-devkit)
