@@ -3,6 +3,7 @@
   "FeeDelegation": "Fee Delegation",
   "API-Keys": "Relayer / API-Keys",
   "Scheduler": "Scheduler",
+  "SwapProviders": "Swap Providers",
   "Public-APIs": "Public APIs",
   "AuthService": "Sign In with Vechain"
 }

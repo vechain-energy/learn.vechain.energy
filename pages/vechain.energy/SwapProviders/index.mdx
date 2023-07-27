@@ -1,13 +1,37 @@
 # What are Swap Providers?
 
-A Swap Provider allows your users to swap tokens on your platform.
+A Swap Provider provides access to a Token-Swap within a dApp.
 
 ## Why is it important?
 
 Sending users away to other platforms to swap tokens is a bad user experience and creates potential user loss.
 
-Embed a form on your website that allows users to swap tokens from different networks without leaving your platform. Users can stay on your website and will have a better experience.
+Embedding a form on the website allows users to swap tokens from different networks without leaving your platform. Users can stay the website and enjoy a better experience.
 
 ## How does it work?
 
-Every Swap Provider has a unique link that can be embedded as an IFrame. The IFrame shows a form for the swap and a status for the swap-process.
+Every Swap Provider has a unique link that can be embedded as an IFrame. The IFrame displays a form for the swap and a status of the swap-process.
+In the background third parties are managing the swap-process that define the minimum/maximum available amount for the swap and the exchange rate.
+In rare cases the swap-process can fail or require a KYC. In this case the user will be notified and support is provided directly.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant swap.vechain.energy
+    participant Source-Chain
+    participant Vechain Wallet
+
+    note right of User: Begin Swap
+    User->>swap.vechain.energy: Begin Swap with Token + Amount + Wallet-Address
+    swap.vechain.energy-->>User: instruction for deposit
+    note right of User: Waiting for Deposit
+    User->>Source-Chain: send selected Amount of Tokens
+    Source-Chain-->>swap.vechain.energy: receipt
+    swap.vechain.energy-->>User: confirm receiption
+    note right of User: Exchanging
+    swap.vechain.energy-->>swap.vechain.energy: swap
+    swap.vechain.energy-->>Vechain Wallet: send VET
+    note right of User: Confirmation
+    swap.vechain.energy-->>User: confirm swap completion
+    User-->Vechain Wallet: spend VET
+```
