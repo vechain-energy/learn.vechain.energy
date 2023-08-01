@@ -1,0 +1,67 @@
+# How to read from contracts using ethers?
+
+[ethers](https://docs.ethers.org/) is one of the prominent standard libraries used for interacting with "web3."
+
+It is widely used, and if you come from a different ecosystem, using ethers might be a more straightforward way to get started rather than interacting with Connex directly.
+
+By combining [@vechain/web3-providers-connex](https://github.com/vechain/web3-providers-connex#readme) (VeChain Connex) with ethers (v5), you can easily create the ability to interact with VeChain contracts.
+
+## Setting Up the Provider
+
+ethers requires a provider to understand how to interact with the blockchain and submit standard commands. Below is an example snippet that creates a provider for the VeChain MainNet:
+
+```javascript
+import Connex from "@vechain/connex";
+import * as thor from '@vechain/web3-providers-connex'
+
+// Connect to VeChain
+const connex = new Connex({
+  node: "https://node-mainnet.vechain.energy",
+  network: "main"
+});
+
+// Inject VeChain Connex Connectivity into an ethers provider
+const provider = thor.ethers.modifyProvider(
+  new ethers.providers.Web3Provider(
+    new thor.Provider({ connex })
+  )
+)
+```
+
+## Setting Up the Contract Interface
+
+A generic contract interface can be configured using an address and its ABI. Here is an example for the VTHO Contract and its `totalSupply` function:
+
+
+```js
+// configure the VTHO contract like any other contract
+const CONTRACT_ADDRESS = '0x0000000000000000000000000000456e65726779'
+const ABI = [{
+  name: "totalSupply",
+  inputs: [],
+  outputs: [{ internalType: "uint256", name: "vtho", type: "uint256" }],
+  stateMutability: "view",
+  type: "function"
+}]
+```
+
+The interface is created using `ethers.Contract` and combines contract information with the provider:
+
+```js
+const VTHOContract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+```
+
+## Using the Contract Interface
+
+Interacting with the contract is simplified to a single async call that responds with the contract outputs:
+
+```js
+const totalSupply = await VTHOContract.totalSupply()
+```
+
+
+## Links
+
+- [Working example on GitHub](https://github.com/vechain-energy/example-ethers-contracts)
+- [ethers@5](https://docs.ethers.org/v5/)
+- [@vechain/web3-providers-connex](https://github.com/vechain/web3-providers-connex#readme)
