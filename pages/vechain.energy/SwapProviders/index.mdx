@@ -1,6 +1,6 @@
 # What are Swap Providers?
 
-A Swap Provider provides access to a Token-Swap within a dApp.
+A Swap Provider provides access to a Token-Swap within a dApp and a Fiat-On-Ramp to onboard new users into the ecosystem.
 
 ## Why is it important?
 
@@ -8,11 +8,15 @@ Sending users away to other platforms to swap tokens is a bad user experience an
 
 Embedding a form on the website allows users to swap tokens from different networks without leaving your platform. Users can stay the website and enjoy a better experience.
 
+For Fiat purchases the user needs to be redirect to a Payment-Processor that ensures legal compliance, but which still adds friction but removes the need to search for a trustworthy way to onboard the ecosystem.
+
 ## How does it work?
 
 Every Swap Provider has a unique link that can be embedded as an IFrame. The IFrame displays a form for the swap and a status of the swap-process.
 In the background third parties are managing the swap-process that define the minimum/maximum available amount for the swap and the exchange rate.
 In rare cases the swap-process can fail or require a KYC. In this case the user will be notified and support is provided directly.
+
+### Swapping a Token
 
 ```mermaid
 sequenceDiagram
@@ -35,3 +39,32 @@ sequenceDiagram
     swap.vechain.energy-->>User: confirm swap completion
     User-->Vechain Wallet: spend VET
 ```
+
+
+### Fiat On-Ramp
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant ramp.vechain.energy
+    participant Payment-Processor
+    participant Vechain Wallet
+
+    note right of User: Begin Purchase
+    User->>ramp.vechain.energy: Enter Purchase-Details with Currency + Amount + Wallet-Address
+    ramp.vechain.energy-->>User: list possible offers
+    User->>ramp.vechain.energy: select offer
+    ramp.vechain.energy-->>User: redirect to Payment-Processor
+    note right of User: Purchase
+    User->>Payment-Processor: continue with purchase
+    Payment-Processor-->>User: provide instructions
+    User->>Payment-Processor: complete purchase
+    Payment-Processor-->>User: inform about status
+    note right of User: Confirmation
+    Payment-Processor-->>Vechain Wallet: send VET
+    User-->Vechain Wallet: spend VET
+```
+
+## Links
+
+As a non-embedded version the Swap-Service is available at [swap.vechain.energy](https://swap.vechain.energy) and the Fiat-On-Ramp at [ramp.vechain.energy](https://ramp.vechain.energy).
