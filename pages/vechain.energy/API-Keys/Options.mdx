@@ -15,6 +15,9 @@ By passing the query parameter `?test=true`, you can simulate the transaction be
 
 Simulations help to save gas fees for potentially failing transactions.
 
+## Transaction Depencency
+
+By posting `dependsOn` with a transaction id with a request, the transaction will be executed after the transaction with the given id has been executed (or fail after 32 blocks).
 
 ## Enable / Disable
 
