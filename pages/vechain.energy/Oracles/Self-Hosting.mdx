@@ -1,0 +1,82 @@
+# How to Host Your Own Oracle Service
+
+Here are the steps to host your own Oracle service:
+
+- Sign up on [Cloudflare](https://cloudflare.com). This will host the backend using [Cloudflare Workers](https://developers.cloudflare.com/workers/).
+- Sign up on [vechain.energy](https://vechain.energy) and set up [API-Relay](https://docs.vechain.energy/vechain.energy/API-Keys/). Make sure it's set to interact with everyone.
+- Deploy the contracts on Vechain.
+- Deploy the Backend on Cloudflare.
+- Set up the Backend with your Data Sources.
+
+### How to Deploy Contracts
+
+* All contracts can be found at https://github.com/vechain-energy/oracle.vechain.energy/tree/main/contracts.
+* Follow the instructions in that section to deploy them.
+
+### How to Deploy Reporter
+
+* The reporter can be found at https://github.com/vechain-energy/oracle.vechain.energy/tree/main/reporter.
+* Follow the instructions in that section to deploy it.
+
+### How to Set Up the Backend
+
+Choose your Data Sources and find the JSON-Document-Path. Set up your feed configuration accordingly.
+
+Here's an example for VET-USD from public sources:
+
+```json
+{
+    "id":"vet-usd",
+    "sources": [
+        {
+            "url": "https://api.coincap.io/v2/assets/vechain",
+            "path": ".data.priceUsd"
+        }
+    ],
+    "heartbeat": 3600,
+    "deviationPoints": 100,
+    "interval": 60,
+    "contract": {
+        "nodeUrl": "https://node-testnet.vechain.energy",
+        "address": "<0x_Deployed_Oracle_Contract_Address>"
+    }
+}
+```
+
+Save it as `feed-config.json` and POST it to your backend.
+
+Here's how to do it:
+
+```shell
+curl -XPOST http://localhost:8787/unique-id \
+-H "X-API-Key: ${API_KEY}" \
+--data-binary "@feed-config.json"
+```
+
+### How to Test
+
+You can check if your service is working by visiting your deployed backend's status URL. Append the `unique-id` of your feed.
+
+Here's an example using the public setup:
+* https://oracle.vechain.energy/test-vet-usd
+
+This will confirm that everything is running with the configuration and the last value:
+
+```json
+{
+    "id": "test-vet-usd",
+    "nextUpdate": 1702637786436,
+    "healthy": true,
+    "config": {
+        "interval": 300,
+        "heartbeat": 3600,
+        "deviationPoints": 100
+    },
+    "latestValue": {
+        "id": "test-vet-usd",
+        "updatedAt": 1702637485,
+        "value": "29912757636",
+        "formattedValue": "0.029912757636"
+    }
+}
+```
