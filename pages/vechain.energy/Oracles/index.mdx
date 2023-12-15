@@ -2,11 +2,32 @@
 
 An Oracle is a source of trusted information, often used to provide token prices.
 
-vechain.energy operates oracles that supply relevant data.
+
+## Interface
+
+The contract interface for all oracles is:
+
+```sol
+interface IVechainEnergyOracleV1 {
+    // emitted when data changes
+    event ValueUpdate(bytes32 id, uint128 value, uint128 updatedAt);
+
+    // access value for a given feed id
+    function getLatestValue(bytes32 id) external view returns (uint128 value, uint128 updatedAt);
+
+    // allows everyon to update values using a verified & signed responses from the public API
+    function updateValueWithProof(bytes memory message, bytes memory extraData, address signedFor) external;
+}
+```
+
+* `id` is a byte32 encoded version of the feed identifier (for example `vet-usd`)
+* `value` is the value provided by the oracle
+* `updatedAt` is the unix timestamp when the value was last determined
+
 
 ## Source Code
 
-The elements needed to run the oracle are open-sourced. This helps developers build and manage oracle services on Vechain.
+The components needed to run the oracle are open-sourced. This helps developers build and manage oracle services on Vechain.
 
 The project includes smart contracts for storing data on-chain and a backend that updates this on-chain data. The oracle service can be customized to support various data sources and multiple feeds. It also offers a public API to get the most recent data from sources, even if it hasn't been stored on-chain yet.
 
