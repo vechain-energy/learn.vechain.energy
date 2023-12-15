@@ -1,9 +1,12 @@
 {
-  "About": "What is vechain.energy?",
-  "FeeDelegation": "Fee Delegation",
-  "API-Keys": "Relayer / API-Keys",
-  "Scheduler": "Scheduler",
-  "SwapProviders": "Swap Providers",
-  "Public-APIs": "Public APIs",
-  "AuthService": "Sign In with Vechain"
+    "About": "What is vechain.energy?",
+    "FeeDelegation": "Fee Delegation",
+    "API-Keys": "Relayer / API-Keys",
+    "Scheduler": "Scheduler",
+    "Webhooks": "Webhooks",
+    "SwapProviders": "Swap Providers",
+    "Public-APIs": "Public APIs",
+    "AuthService": "Sign In with Vechain",
+    "Virtual-Proxy-Node": "Virtual Proxy Node",
+    "Oracles": "Oracles"
 }
