@@ -1,0 +1,64 @@
+# EURT/USD
+
+Provides the current USD price for EURT to support Euro conversion for USD prices.
+
+<small>
+_Note: The data is sourced from Chainlinks ETH Oracle: https://data.chain.link/ethereum/mainnet/crypto-usd/eurt-usd_
+</small>
+
+## Datasheet
+
+* Address: `0x12E3582D7ca22234f39D2A7BE12C98ea9c077E25` @ `TestNet`
+* Feed ID: `eurt-usd` / `0x657572742d757364000000000000000000000000000000000000000000000000`
+* Heartbeat: `1 Hour`
+* Max. Deviation: `1%`
+* Update Interval: `5 Minutes`
+* Status URL: https://oracle.vechain.energy/eurt-usd
+* CCIP Resolver: https://oracle.vechain.energy/eurt-usd/resolver
+
+## Configuration
+
+```json
+{
+    "id":"eurt-usd",
+    "sources": [
+        {                           
+            "url": "https://rpc.ankr.com/eth",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x01d391a48f4f7339ac64ca2c83a07c22f95f587a\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        },
+        {                           
+            "url": "https://cloudflare-eth.com",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x01d391a48f4f7339ac64ca2c83a07c22f95f587a\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        },
+        {                           
+            "url": "https://ethereum.publicnode.com",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x01d391a48f4f7339ac64ca2c83a07c22f95f587a\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        },
+        {                           
+            "url": "https://nodes.mewapi.io/rpc/eth",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x01d391a48f4f7339ac64ca2c83a07c22f95f587a\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        }
+    ],
+    "heartbeat": 3600,
+    "deviationPoints": 100,
+    "interval": 300,
+    "contract": [
+        {
+            "nodeUrl": "https://node-testnet.vechain.energy",
+            "address": "0x12E3582D7ca22234f39D2A7BE12C98ea9c077E25"
+        }
+    ]
+}
+```
