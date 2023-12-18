@@ -36,10 +36,12 @@ Here's an example for VET-USD from public sources:
     "heartbeat": 3600,
     "deviationPoints": 100,
     "interval": 60,
-    "contract": {
-        "nodeUrl": "https://node-testnet.vechain.energy",
-        "address": "<0x_Deployed_Oracle_Contract_Address>"
-    }
+    "contracts": [
+        {
+            "nodeUrl": "https://node-testnet.vechain.energy",
+            "address": "<0x_Deployed_Oracle_Contract_Address>"
+        }
+    ]
 }
 ```
 
