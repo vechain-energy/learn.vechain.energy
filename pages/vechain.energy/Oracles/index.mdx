@@ -8,8 +8,7 @@ You can check the data and status provided by vechain.energy's Oracles at https:
 
 * Each Oracle setup can manage multiple data feeds, each with its own settings.
 * Every URL in a feed is checked regularly, based on a configure interval.
-* We filter out any responses that are significantly different from the average (these are called outliers).
-* We then calculate the average of all the responses to get the final value.
+* We extract the median value from the results.
 * If the data on the blockchain is too old (based on a set 'heartbeat') or if it's too different from the current value (beyond a set percentage), we update the data on the blockchain.
 * You can always get the most recent value from an API, which allows for quicker access.
 
