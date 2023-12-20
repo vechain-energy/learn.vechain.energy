@@ -35,7 +35,21 @@ Provides the current USD price for Vechains native token VET.
         {                                         
             "url": "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?CMC_PRO_API_KEY=<CMC_PRO_API_KEY>&symbol=VET",
             "path": ".data.VET.0.quote.USD.price"
-        }                                      
+        },
+        {
+            "url": "https://nodes.mewapi.io/rpc/bsc",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x9f1fd2cef7b226d555a747da0411f93c5fe74e13\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        },
+        {
+            "url": "https://rpc.ankr.com/bsc",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x9f1fd2cef7b226d555a747da0411f93c5fe74e13\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        }
     ],                                           
     "heartbeat": 3600,
     "deviationPoints": 100,                              
