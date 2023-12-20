@@ -1,4 +1,11 @@
+import { Callout } from "nextra/components";
+
 # What is an Oracle?
+
+<Callout type="warning">
+  The oracle deployments are currently undergoing testing. Please note that
+  addresses may change.
+</Callout>
 
 An Oracle is a source of trusted information, often used to provide token prices.
 
@@ -6,11 +13,11 @@ You can check the data and status provided by vechain.energy's Oracles at https:
 
 ## Data Evaluation
 
-* Each Oracle setup can manage multiple data feeds, each with its own settings.
-* Every URL in a feed is checked regularly, based on a configure interval.
-* We extract the median value from the results.
-* If the data on the blockchain is too old (based on a set 'heartbeat') or if it's too different from the current value (beyond a set percentage), we update the data on the blockchain.
-* You can always get the most recent value from an API, which allows for quicker access.
+- Each Oracle setup can manage multiple data feeds, each with its own settings.
+- Every URL in a feed is checked regularly, based on a configure interval.
+- We extract the median value from the results.
+- If the data on the blockchain is too old (based on a set 'heartbeat') or if it's too different from the current value (beyond a set percentage), we update the data on the blockchain.
+- You can always get the most recent value from an API, which allows for quicker access.
 
 ## Contract Interface
 
@@ -29,20 +36,18 @@ interface IVechainEnergyOracleV1 {
 }
 ```
 
-* `id` is a byte32 encoded version of the feed identifier (for example `vet-usd`)
-* `value` is the value provided by the oracle
-* `updatedAt` is the unix timestamp when the value was last determined
-
+- `id` is a byte32 encoded version of the feed identifier (for example `vet-usd`)
+- `value` is the value provided by the oracle
+- `updatedAt` is the unix timestamp when the value was last determined
 
 ## API Interface
 
 A REST-API is publicly available for accessing the latest determined value and for administration purpose.
 
-The OpenAPI definition can be found in the projects repository:  
+The OpenAPI definition can be found in the projects repository:
 
-* https://github.com/vechain-energy/oracle.vechain.energy/blob/main/reporter/public/swagger.yml
-* https://node.vechain.energy/doc/swagger-ui/?url=https://raw.githubusercontent.com/vechain-energy/oracle.vechain.energy/main/reporter/public/swagger.yml
-
+- https://github.com/vechain-energy/oracle.vechain.energy/blob/main/reporter/public/swagger.yml
+- https://node.vechain.energy/doc/swagger-ui/?url=https://raw.githubusercontent.com/vechain-energy/oracle.vechain.energy/main/reporter/public/swagger.yml
 
 ## Source Code
 
