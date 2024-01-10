@@ -54,6 +54,12 @@ curl -XPOST http://localhost:8787/unique-id \
 --data-binary "@feed-config.json"
 ```
 
+### How To Set Up Aggregation
+
+* Deploy a `OracleAggregatorUpgradable` contract using the instructions at https://github.com/vechain-energy/oracle.vechain.energy/tree/main/contracts.
+* Call `addSource(address)` for each contract used as source.
+
+
 ### How to Test
 
 You can check if your service is working by visiting your deployed backend's status URL. Append the `unique-id` of your feed.
