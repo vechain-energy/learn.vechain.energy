@@ -1,0 +1,57 @@
+# BRL/USD
+
+Provides the current USD price for BRL to support Brazilian BRL conversion for USD prices.
+
+<small>
+_Note: The data is sourced from Chainlinks BSC & Base Oracle: https://data.chain.link/feeds/bsc/mainnet/brl-usd
+</small>
+
+## Datasheet
+
+* Address: `0x49eC7192BF804Abc289645ca86F1eD01a6C17713` @ `MainNet`
+* Feed ID: `brl-usd` / `0x657572742d757364000000000000000000000000000000000000000000000000`
+* Heartbeat: `24 Hours`
+* Max. Deviation: `1%`
+* Update Interval: `5 Minutes`
+* Status URL: https://oracle.vechain.energy/brl-usd
+* CCIP Resolver: https://oracle.vechain.energy/brl-usd/resolver
+
+## Sources
+
+* [Chainlink BRL / USD on Base](https://data.chain.link/feeds/base/base/brl-usd) using RPC ankr.com
+* [Chainlink BRL / USD on BSC](https://data.chain.link/feeds/bsc/mainnet/brl-usd) using RPC bscrpc.com
+
+## Configuration
+
+```json
+{
+    "id": "brl-usd",
+    "sources": [{
+            "url": "https://rpc.ankr.com/base",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x0b0E64c05083FdF9ED7C5D3d8262c4216eFc9394\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        },
+        {
+            "url": "https://bscrpc.com",
+            "path": ".result",
+            "method": "POST",
+            "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"to\":\"0x5cb1Cb3eA5FB46de1CE1D0F3BaDB3212e8d8eF48\",\"data\":\"0x50d25bcd\"},\"latest\"],\"id\":\"1\"}",
+            "decimals": 8
+        }
+    ],
+    "heartbeat": 86400,
+    "deviationPoints": 100,
+    "interval": 300,
+    "contracts": [{
+            "nodeUrl": "https://node-mainnet.vechain.energy",
+            "address": "0x49eC7192BF804Abc289645ca86F1eD01a6C17713"
+        },
+        {
+            "nodeUrl": "https://node-testnet.vechain.energy",
+            "address": "0xdcCAaBd81B38e0dEEf4c202bC7F1261A4D9192C6"
+        }
+    ]
+}
+```
