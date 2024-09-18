@@ -2,10 +2,12 @@
     "index": "What are Oracles?",
     "MainNet-VET-USD": "VET/USD (MainNet)",
     "MainNet-VTHO-USD": "VTHO/USD (MainNet)",
+    "MainNet-B3TR-USD": "B3TR/USD (MainNet)",
     "MainNet-EURT-USD": "EURT/USD (MainNet)",
     "MainNet-BRL-USD": "BRL/USD (MainNet)",
     "TestNet-VET-USD": "VET/USD (TestNet)",
     "TestNet-VTHO-USD": "VTHO/USD (TestNet)",
+    "TestNet-B3TR-USD": "B3TR/USD (TestNet)",
     "TestNet-EURT-USD": "EURT/USD (TestNet)",
     "TestNet-BRL-USD": "BRL/USD (TestNet)"
 }
